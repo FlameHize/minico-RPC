@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/zhuguangxu/server/minico-RPC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zhuguangxu/server/minico-RPC
+CMAKE_BINARY_DIR = /home/zhuguangxu/server/minico-RPC/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/CMakeFiles /home/zhuguangxu/server/minico-RPC/example/CMakeFiles/progress.marks
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles /home/zhuguangxu/server/minico-RPC/build/CMakeFiles/progress.marks
+	$(MAKE) -f CMakeFiles/Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/clean
+	$(MAKE) -f CMakeFiles/Makefile2 clean
 .PHONY : clean
 
 # The main clean target
@@ -97,32 +97,43 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-example/CMakeFiles/minico_test.dir/rule:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/CMakeFiles/minico_test.dir/rule
-.PHONY : example/CMakeFiles/minico_test.dir/rule
+#=============================================================================
+# Target rules for targets named minico-rpc
 
-# Convenience name for target.
-minico_test: example/CMakeFiles/minico_test.dir/rule
+# Build rule for target.
+minico-rpc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 minico-rpc
+.PHONY : minico-rpc
 
+# fast build rule for target.
+minico-rpc/fast:
+	$(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/build
+.PHONY : minico-rpc/fast
+
+#=============================================================================
+# Target rules for targets named minico_test
+
+# Build rule for target.
+minico_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 minico_test
 .PHONY : minico_test
 
 # fast build rule for target.
 minico_test/fast:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/build
+	$(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/build
 .PHONY : minico_test/fast
 
 # Help Target
@@ -132,8 +143,9 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... minico_test"
 	@echo "... edit_cache"
+	@echo "... minico-rpc"
+	@echo "... minico_test"
 .PHONY : help
 
 
@@ -145,6 +157,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

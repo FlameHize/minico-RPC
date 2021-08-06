@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/zhuguangxu/server/minico-RPC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zhuguangxu/server/minico-RPC
+CMAKE_BINARY_DIR = /home/zhuguangxu/server/minico-RPC/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/CMakeFiles /home/zhuguangxu/server/minico-RPC/src/CMakeFiles/progress.marks
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/CMakeFiles 0
+	cd /home/zhuguangxu/server/minico-RPC/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles /home/zhuguangxu/server/minico-RPC/build/src/CMakeFiles/progress.marks
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/zhuguangxu/server/minico-RPC/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/minico-rpc.dir/rule:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/minico-rpc.dir/rule
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/minico-rpc.dir/rule
 .PHONY : src/CMakeFiles/minico-rpc.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ minico-rpc: src/CMakeFiles/minico-rpc.dir/rule
 
 # fast build rule for target.
 minico-rpc/fast:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/build
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/build
 .PHONY : minico-rpc/fast
 
 context.o: context.cc.o
@@ -131,7 +131,7 @@ context.o: context.cc.o
 
 # target to build an object file
 context.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/context.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/context.cc.o
 .PHONY : context.cc.o
 
 context.i: context.cc.i
@@ -140,7 +140,7 @@ context.i: context.cc.i
 
 # target to preprocess a source file
 context.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/context.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/context.cc.i
 .PHONY : context.cc.i
 
 context.s: context.cc.s
@@ -149,7 +149,7 @@ context.s: context.cc.s
 
 # target to generate assembly for a file
 context.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/context.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/context.cc.s
 .PHONY : context.cc.s
 
 coroutine.o: coroutine.cc.o
@@ -158,7 +158,7 @@ coroutine.o: coroutine.cc.o
 
 # target to build an object file
 coroutine.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/coroutine.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/coroutine.cc.o
 .PHONY : coroutine.cc.o
 
 coroutine.i: coroutine.cc.i
@@ -167,7 +167,7 @@ coroutine.i: coroutine.cc.i
 
 # target to preprocess a source file
 coroutine.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/coroutine.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/coroutine.cc.i
 .PHONY : coroutine.cc.i
 
 coroutine.s: coroutine.cc.s
@@ -176,7 +176,7 @@ coroutine.s: coroutine.cc.s
 
 # target to generate assembly for a file
 coroutine.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/coroutine.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/coroutine.cc.s
 .PHONY : coroutine.cc.s
 
 epoller.o: epoller.cc.o
@@ -185,7 +185,7 @@ epoller.o: epoller.cc.o
 
 # target to build an object file
 epoller.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/epoller.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/epoller.cc.o
 .PHONY : epoller.cc.o
 
 epoller.i: epoller.cc.i
@@ -194,7 +194,7 @@ epoller.i: epoller.cc.i
 
 # target to preprocess a source file
 epoller.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/epoller.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/epoller.cc.i
 .PHONY : epoller.cc.i
 
 epoller.s: epoller.cc.s
@@ -203,7 +203,7 @@ epoller.s: epoller.cc.s
 
 # target to generate assembly for a file
 epoller.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/epoller.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/epoller.cc.s
 .PHONY : epoller.cc.s
 
 minico_api.o: minico_api.cc.o
@@ -212,7 +212,7 @@ minico_api.o: minico_api.cc.o
 
 # target to build an object file
 minico_api.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/minico_api.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/minico_api.cc.o
 .PHONY : minico_api.cc.o
 
 minico_api.i: minico_api.cc.i
@@ -221,7 +221,7 @@ minico_api.i: minico_api.cc.i
 
 # target to preprocess a source file
 minico_api.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/minico_api.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/minico_api.cc.i
 .PHONY : minico_api.cc.i
 
 minico_api.s: minico_api.cc.s
@@ -230,7 +230,7 @@ minico_api.s: minico_api.cc.s
 
 # target to generate assembly for a file
 minico_api.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/minico_api.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/minico_api.cc.s
 .PHONY : minico_api.cc.s
 
 mstime.o: mstime.cc.o
@@ -239,7 +239,7 @@ mstime.o: mstime.cc.o
 
 # target to build an object file
 mstime.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mstime.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mstime.cc.o
 .PHONY : mstime.cc.o
 
 mstime.i: mstime.cc.i
@@ -248,7 +248,7 @@ mstime.i: mstime.cc.i
 
 # target to preprocess a source file
 mstime.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mstime.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mstime.cc.i
 .PHONY : mstime.cc.i
 
 mstime.s: mstime.cc.s
@@ -257,7 +257,7 @@ mstime.s: mstime.cc.s
 
 # target to generate assembly for a file
 mstime.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mstime.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mstime.cc.s
 .PHONY : mstime.cc.s
 
 mutex.o: mutex.cc.o
@@ -266,7 +266,7 @@ mutex.o: mutex.cc.o
 
 # target to build an object file
 mutex.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mutex.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mutex.cc.o
 .PHONY : mutex.cc.o
 
 mutex.i: mutex.cc.i
@@ -275,7 +275,7 @@ mutex.i: mutex.cc.i
 
 # target to preprocess a source file
 mutex.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mutex.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mutex.cc.i
 .PHONY : mutex.cc.i
 
 mutex.s: mutex.cc.s
@@ -284,7 +284,7 @@ mutex.s: mutex.cc.s
 
 # target to generate assembly for a file
 mutex.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mutex.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/mutex.cc.s
 .PHONY : mutex.cc.s
 
 processor.o: processor.cc.o
@@ -293,7 +293,7 @@ processor.o: processor.cc.o
 
 # target to build an object file
 processor.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor.cc.o
 .PHONY : processor.cc.o
 
 processor.i: processor.cc.i
@@ -302,7 +302,7 @@ processor.i: processor.cc.i
 
 # target to preprocess a source file
 processor.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor.cc.i
 .PHONY : processor.cc.i
 
 processor.s: processor.cc.s
@@ -311,7 +311,7 @@ processor.s: processor.cc.s
 
 # target to generate assembly for a file
 processor.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor.cc.s
 .PHONY : processor.cc.s
 
 processor_selector.o: processor_selector.cc.o
@@ -320,7 +320,7 @@ processor_selector.o: processor_selector.cc.o
 
 # target to build an object file
 processor_selector.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor_selector.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor_selector.cc.o
 .PHONY : processor_selector.cc.o
 
 processor_selector.i: processor_selector.cc.i
@@ -329,7 +329,7 @@ processor_selector.i: processor_selector.cc.i
 
 # target to preprocess a source file
 processor_selector.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor_selector.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor_selector.cc.i
 .PHONY : processor_selector.cc.i
 
 processor_selector.s: processor_selector.cc.s
@@ -338,7 +338,7 @@ processor_selector.s: processor_selector.cc.s
 
 # target to generate assembly for a file
 processor_selector.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor_selector.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor_selector.cc.s
 .PHONY : processor_selector.cc.s
 
 scheduler.o: scheduler.cc.o
@@ -347,7 +347,7 @@ scheduler.o: scheduler.cc.o
 
 # target to build an object file
 scheduler.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/scheduler.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/scheduler.cc.o
 .PHONY : scheduler.cc.o
 
 scheduler.i: scheduler.cc.i
@@ -356,7 +356,7 @@ scheduler.i: scheduler.cc.i
 
 # target to preprocess a source file
 scheduler.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/scheduler.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/scheduler.cc.i
 .PHONY : scheduler.cc.i
 
 scheduler.s: scheduler.cc.s
@@ -365,7 +365,7 @@ scheduler.s: scheduler.cc.s
 
 # target to generate assembly for a file
 scheduler.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/scheduler.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/scheduler.cc.s
 .PHONY : scheduler.cc.s
 
 socket.o: socket.cc.o
@@ -374,7 +374,7 @@ socket.o: socket.cc.o
 
 # target to build an object file
 socket.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/socket.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/socket.cc.o
 .PHONY : socket.cc.o
 
 socket.i: socket.cc.i
@@ -383,7 +383,7 @@ socket.i: socket.cc.i
 
 # target to preprocess a source file
 socket.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/socket.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/socket.cc.i
 .PHONY : socket.cc.i
 
 socket.s: socket.cc.s
@@ -392,7 +392,7 @@ socket.s: socket.cc.s
 
 # target to generate assembly for a file
 socket.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/socket.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/socket.cc.s
 .PHONY : socket.cc.s
 
 timer.o: timer.cc.o
@@ -401,7 +401,7 @@ timer.o: timer.cc.o
 
 # target to build an object file
 timer.cc.o:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/timer.cc.o
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/timer.cc.o
 .PHONY : timer.cc.o
 
 timer.i: timer.cc.i
@@ -410,7 +410,7 @@ timer.i: timer.cc.i
 
 # target to preprocess a source file
 timer.cc.i:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/timer.cc.i
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/timer.cc.i
 .PHONY : timer.cc.i
 
 timer.s: timer.cc.s
@@ -419,7 +419,7 @@ timer.s: timer.cc.s
 
 # target to generate assembly for a file
 timer.cc.s:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/timer.cc.s
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/timer.cc.s
 .PHONY : timer.cc.s
 
 # Help Target
@@ -475,6 +475,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/zhuguangxu/server/minico-RPC/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

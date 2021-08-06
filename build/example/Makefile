@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/zhuguangxu/server/minico-RPC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zhuguangxu/server/minico-RPC
+CMAKE_BINARY_DIR = /home/zhuguangxu/server/minico-RPC/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/CMakeFiles /home/zhuguangxu/server/minico-RPC/example/CMakeFiles/progress.marks
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/CMakeFiles 0
+	cd /home/zhuguangxu/server/minico-RPC/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles /home/zhuguangxu/server/minico-RPC/build/example/CMakeFiles/progress.marks
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 example/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/clean
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 example/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/preinstall
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 example/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/preinstall
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 example/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/zhuguangxu/server/minico-RPC/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 example/CMakeFiles/minico_test.dir/rule:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f CMakeFiles/Makefile2 example/CMakeFiles/minico_test.dir/rule
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f CMakeFiles/Makefile2 example/CMakeFiles/minico_test.dir/rule
 .PHONY : example/CMakeFiles/minico_test.dir/rule
 
 # Convenience name for target.
@@ -122,8 +122,35 @@ minico_test: example/CMakeFiles/minico_test.dir/rule
 
 # fast build rule for target.
 minico_test/fast:
-	cd /home/zhuguangxu/server/minico-RPC && $(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/build
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/build
 .PHONY : minico_test/fast
+
+main.o: main.cc.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cc.o:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/main.cc.o
+.PHONY : main.cc.o
+
+main.i: main.cc.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cc.i:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/main.cc.i
+.PHONY : main.cc.i
+
+main.s: main.cc.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cc.s:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/main.cc.s
+.PHONY : main.cc.s
 
 # Help Target
 help:
@@ -134,6 +161,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... minico_test"
 	@echo "... edit_cache"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
@@ -145,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/zhuguangxu/server/minico-RPC && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/zhuguangxu/server/minico-RPC/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

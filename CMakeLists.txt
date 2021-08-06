@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 2.8)
+project(minico-rpc)
+
+set(CMAKE_BUILD_TYPE RELEASE)
+set(CMAKE_CXX_FLAGS "-std=c++11 -Wall")
+set(CMAKE_CXX_FLAGS_RELEASE  "-std=c++11 -O3 -fopenmp -pthread")
+
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin) 
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)    
+
+include_directories(${PROJECT_SOURCE_DIR}/include)
+add_subdirectory(src)
+add_subdirectory(example)
