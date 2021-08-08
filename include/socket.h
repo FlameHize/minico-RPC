@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <sys/socket.h>
 
+#include "../include/logger.h"
+
 struct tcp_info;
 
 namespace minico 
@@ -64,7 +66,7 @@ namespace minico
 		bool isUseful() { return _sockfd >= 0; }
 
 		//绑定ip和port到当前Socket
-		int bind(int port);
+		int bind(const char* ip,int port);
 
 		//开始监听当前Socket
 		int listen();

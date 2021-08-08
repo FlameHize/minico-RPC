@@ -84,7 +84,7 @@ src/preinstall:
 src/CMakeFiles/minico-rpc.dir/all:
 	$(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/depend
 	$(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhuguangxu/server/minico-RPC/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target minico-rpc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhuguangxu/server/minico-RPC/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target minico-rpc"
 .PHONY : src/CMakeFiles/minico-rpc.dir/all
 
 # Include target in all.
@@ -94,7 +94,7 @@ all: src/CMakeFiles/minico-rpc.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/minico-rpc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/minico-rpc.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/minico-rpc.dir/rule
@@ -139,7 +139,7 @@ example/preinstall:
 example/CMakeFiles/minico_test.dir/all: src/CMakeFiles/minico-rpc.dir/all
 	$(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/depend
 	$(MAKE) -f example/CMakeFiles/minico_test.dir/build.make example/CMakeFiles/minico_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhuguangxu/server/minico-RPC/build/CMakeFiles --progress-num=13,14 "Built target minico_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhuguangxu/server/minico-RPC/build/CMakeFiles --progress-num=15,16 "Built target minico_test"
 .PHONY : example/CMakeFiles/minico_test.dir/all
 
 # Include target in all.
@@ -149,7 +149,7 @@ all: example/CMakeFiles/minico_test.dir/all
 
 # Build rule for subdir invocation for target.
 example/CMakeFiles/minico_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 example/CMakeFiles/minico_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhuguangxu/server/minico-RPC/build/CMakeFiles 0
 .PHONY : example/CMakeFiles/minico_test.dir/rule

@@ -30,6 +30,8 @@ utils.h
 vector
 -
 
+/home/zhuguangxu/server/minico-RPC/include/logger.h
+
 /home/zhuguangxu/server/minico-RPC/include/mempool.h
 parameter.h
 /home/zhuguangxu/server/minico-RPC/include/parameter.h
@@ -119,6 +121,8 @@ unistd.h
 -
 sys/socket.h
 -
+../include/logger.h
+/home/zhuguangxu/server/minico-RPC/include/logger.h
 
 /home/zhuguangxu/server/minico-RPC/include/spinlock.h
 atomic
@@ -131,6 +135,20 @@ spinlock.h
 /home/zhuguangxu/server/minico-RPC/include/spinlock.h
 utils.h
 /home/zhuguangxu/server/minico-RPC/include/utils.h
+
+/home/zhuguangxu/server/minico-RPC/include/tcp_server.h
+functional
+-
+memory
+-
+sys/sysinfo.h
+-
+../include/logger.h
+/home/zhuguangxu/server/minico-RPC/include/logger.h
+../include/socket.h
+/home/zhuguangxu/server/minico-RPC/include/socket.h
+../include/minico_api.h
+/home/zhuguangxu/server/minico-RPC/include/minico_api.h
 
 /home/zhuguangxu/server/minico-RPC/include/timer.h
 mstime.h
@@ -181,6 +199,26 @@ sys/epoll.h
 -
 unistd.h
 -
+
+/home/zhuguangxu/server/minico-RPC/src/logger.cc
+stdarg.h
+-
+unistd.h
+-
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
+time.h
+-
+errno.h
+-
+sys/time.h
+-
+../include/logger.h
+/home/zhuguangxu/server/minico-RPC/include/logger.h
 
 /home/zhuguangxu/server/minico-RPC/src/minico_api.cc
 ../include/minico_api.h
@@ -243,6 +281,10 @@ string.h
 -
 sys/epoll.h
 -
+
+/home/zhuguangxu/server/minico-RPC/src/tcp_server.cc
+../include/tcp_server.h
+/home/zhuguangxu/server/minico-RPC/include/tcp_server.h
 
 /home/zhuguangxu/server/minico-RPC/src/timer.cc
 ../include/timer.h

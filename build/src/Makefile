@@ -206,6 +206,33 @@ epoller.cc.s:
 	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/epoller.cc.s
 .PHONY : epoller.cc.s
 
+logger.o: logger.cc.o
+
+.PHONY : logger.o
+
+# target to build an object file
+logger.cc.o:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/logger.cc.o
+.PHONY : logger.cc.o
+
+logger.i: logger.cc.i
+
+.PHONY : logger.i
+
+# target to preprocess a source file
+logger.cc.i:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/logger.cc.i
+.PHONY : logger.cc.i
+
+logger.s: logger.cc.s
+
+.PHONY : logger.s
+
+# target to generate assembly for a file
+logger.cc.s:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/logger.cc.s
+.PHONY : logger.cc.s
+
 minico_api.o: minico_api.cc.o
 
 .PHONY : minico_api.o
@@ -395,6 +422,33 @@ socket.cc.s:
 	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/socket.cc.s
 .PHONY : socket.cc.s
 
+tcp_server.o: tcp_server.cc.o
+
+.PHONY : tcp_server.o
+
+# target to build an object file
+tcp_server.cc.o:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp_server.cc.o
+.PHONY : tcp_server.cc.o
+
+tcp_server.i: tcp_server.cc.i
+
+.PHONY : tcp_server.i
+
+# target to preprocess a source file
+tcp_server.cc.i:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp_server.cc.i
+.PHONY : tcp_server.cc.i
+
+tcp_server.s: tcp_server.cc.s
+
+.PHONY : tcp_server.s
+
+# target to generate assembly for a file
+tcp_server.cc.s:
+	cd /home/zhuguangxu/server/minico-RPC/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp_server.cc.s
+.PHONY : tcp_server.cc.s
+
 timer.o: timer.cc.o
 
 .PHONY : timer.o
@@ -440,6 +494,9 @@ help:
 	@echo "... epoller.o"
 	@echo "... epoller.i"
 	@echo "... epoller.s"
+	@echo "... logger.o"
+	@echo "... logger.i"
+	@echo "... logger.s"
 	@echo "... minico_api.o"
 	@echo "... minico_api.i"
 	@echo "... minico_api.s"
@@ -461,6 +518,9 @@ help:
 	@echo "... socket.o"
 	@echo "... socket.i"
 	@echo "... socket.s"
+	@echo "... tcp_server.o"
+	@echo "... tcp_server.i"
+	@echo "... tcp_server.s"
 	@echo "... timer.o"
 	@echo "... timer.i"
 	@echo "... timer.s"

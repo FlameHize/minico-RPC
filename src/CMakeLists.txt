@@ -1,4 +1,5 @@
 add_library(minico-rpc SHARED
+    logger.cc
     context.cc
     coroutine.cc
     epoller.cc
@@ -9,4 +10,5 @@ add_library(minico-rpc SHARED
     processor_selector.cc
     socket.cc
     scheduler.cc
-    minico_api.cc)
+    minico_api.cc
+    tcp_server.cc)

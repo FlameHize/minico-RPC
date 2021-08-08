@@ -5,6 +5,7 @@ example/CMakeFiles/minico_test.dir/main.cc.o: ../example/main.cc
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/context.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/coroutine.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/epoller.h
+example/CMakeFiles/minico_test.dir/main.cc.o: ../include/logger.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/mempool.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/minico_api.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/mstime.h
@@ -16,6 +17,7 @@ example/CMakeFiles/minico_test.dir/main.cc.o: ../include/processor_selector.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/scheduler.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/socket.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/spinlock.h
+example/CMakeFiles/minico_test.dir/main.cc.o: ../include/tcp_server.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/timer.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/utils.h
 

@@ -64,14 +64,22 @@ std::string Socket::getSocketOptString() const
 }
 
 
-int Socket::bind(int port)
+int Socket::bind(const char* ip,int port)
 {
 	_port = port;
 	struct sockaddr_in serv;
 	memset(&serv, 0, sizeof(struct sockaddr_in));
 	serv.sin_family = AF_INET;
 	serv.sin_port = htons(port);
-	serv.sin_addr.s_addr = htonl(INADDR_ANY);	//表示本机的所有IP 也就是从主机的哪个网卡过来数据 都可以接收到
+    /** 表示本机的所有ip,如果ip为null就绑定本机的所有ip地址*/
+    if(ip == nullptr)
+    {
+        serv.sin_addr.s_addr = htonl(INADDR_ANY);   
+    }
+    else
+    {
+        serv.sin_addr.s_addr = inet_addr(ip);
+    }
 	int ret = ::bind(_sockfd, (struct sockaddr*) & serv, sizeof(serv));
 	return ret;
 }
