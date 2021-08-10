@@ -49,8 +49,8 @@ class RpcServer
 class RpcClient
 {
   public:
-    Client(const char* ip,int port);
-    Client(const Client& c);
+    RpcClient(const char* ip,int port);
+    RpcClient(const Client& c);
     ~Client();
 
     void operator=(const Client& c) = delete;

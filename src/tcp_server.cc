@@ -160,11 +160,6 @@ void Server::multi_server_loop(int thread_number)
     return;
 }
 
-Client::Client() : server_ip(nullptr),server_port(-1)
-{
-    /** 拿到一个socket*/
-    client_socket = new minico::Socket();
-}
 
 Client::~Client()
 {
@@ -177,10 +172,10 @@ Client::~Client()
 }
 
 /** 客户端的核心连接函数 需要用一个协程去连接 防止本函数阻塞*/
-void Client::connect(const char* ip,int port)
+void Client::connect()
 {
     /** 调用client_socket的连接函数*/
-    return client_socket->connect(ip,port);
+    return client_socket->connect(server_ip,server_port);
 }
 
 

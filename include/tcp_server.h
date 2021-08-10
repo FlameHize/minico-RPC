@@ -78,11 +78,15 @@ class Client
 {
 public:
     /** 进行socket的一系列初始化的工作*/
-    Client();
+    Client(const char* ip,int port) : server_ip(ip),server_port(port)
+    {
+        /** 拿到一个socket*/
+        client_socket = new minico::Socket();
+    }
     virtual ~Client();
     DISALLOW_COPY_MOVE_AND_ASSIGN(Client);
     
-    void connect(const char* ip,int port);
+    void connect();
     void disconnect();
     int recv(void* buf,size_t count);
     int send(const void* buf,size_t count);

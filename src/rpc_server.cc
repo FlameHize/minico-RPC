@@ -8,7 +8,7 @@ struct RpcHeader
     uint16_t info;
     uint16_t magic;
     uint32_t len;   /** 标识rpc消息的长度*/
-} 
+};
 
 static const uint16_t DefaultMagic = 0x7777;
 
@@ -151,19 +151,20 @@ void ServerImpl::on_connection(minico::Socket* conn)
 
     /** 
      * 收到了客户端发出的rpc请求,会做出如下处理 先不考虑错误处理
-     * rpc请求会先收到一个头部信息,用于后续的主体信息流的截取 
+     * rpc请求会先收到一个头部信息,用于后续的主体信息流的截取
+     * 两次接收 一次发送 
      */
     while(true)
     {
         /** 接收规定大小的rpc的头部信息到header中*/
-        received_bytes = conn->read(&rpc_header,sizeof(rpc_header));
+        received_bytes = connection->read(&rpc_header,sizeof(rpc_header));
         
-        /** 拿到收到的rpc的信息的长度*/
+        /** 拿到收到的rpc的信息的长度 字节序需要转换为网络序*/
         rpc_recv_message_len = ntoh32(rpc_header.len);
 
         /** 对缓冲区进行初步处理 调整大小用于接收rpc实际数据信息,并接收信息*/
         buf.resize(rpc_recv_message_len); 
-        received_bytes = conn->read((void*)buf[0],rpc_recv_message_len);
+        received_bytes = connection->read((void*)buf[0],rpc_recv_message_len);
 
         /** 将接收到的rpc请求从字节流转换为一个json对象*/
         std::string str_json_request(buf.begin(),buf.end());
@@ -184,8 +185,18 @@ void ServerImpl::on_connection(minico::Socket* conn)
         /** 在发送缓冲区中填入rpc头部信息*/
         set_rpc_header((void*)&buf[0],rpc_send_message_len);
 
+        /** 采用vector::copy来进行数据的复制 这里需要进行测试*/
+        std::vector<char>::iterator begin = buf.begin();
+        for(int i = 0;i < sizeof(RpcHeader);++i)
+        {
+            ++begin;
+        }
+        /** 进行拷贝,理论上是无问题的*/
+        std::copy(str_json_result.begin(),str_json_result.end(),begin);
 
-
+        /** 一次性将数据全部发送出去*/
+        connection->send((void*)&buf[0],buf.size());
+        LOG_INFO("一次数据处理完毕");
     }
 }
 
@@ -209,4 +220,95 @@ void RpcServer::add_service(Service* s)
 void RpcServer::start(const char* ip,int port)
 {
     ((ServerImpl*)_p)->start(ip,port);
+}
+
+
+/**
+ * @brief 客户端的基础功能实现类
+*/
+class ClientImpl
+{
+  public:
+    ClientImpl(const char* ip,int port) : _tcp_client(ip,port){
+
+    }
+    ClientImpl(const ClientImpl& c) : _tcp_client(c._tcp_client){
+
+    }
+
+    ~ClientImpl() = default;
+
+    /** 核心RPC请求函数*/
+    void call(const TinyJson& request,TinyJson& result);
+
+    void close()
+    {
+        _tcp_client.disconnect();
+    }
+  private:
+    /** 客户端*/
+    Client _tcp_client;
+
+    /** 数据缓冲区*/
+    vector<char> buf;
+    
+    void connect(){
+        _tcp_client.connect();
+    }
+};
+
+
+void ClientImpl::call(const TinyJson& request,TinyJson& result)
+{
+    /** 这里少了一步逻辑 需要先判断一下客户端是否已经连接*/
+    RpcHeader rpc_header;
+
+    std::string str_json_request = request.WriteJson();
+    int rpc_send_message_len = str_json_request.length();
+
+    /** 拼接头部和消息主体 发送信息*/
+    buf.clear();
+    buf.resize(sizeof(RpcHeader) + rpc_send_message_len);
+    set_rpc_header((void*)&buf[0],rpc_send_message_len);
+    std::vector<char>::iterator begin = buf.begin();
+    for(int i = 0; i < sizeof(RpcHeader);++i)
+    {
+        ++begin;
+    }
+    std::copy(str_json_request.begin(),str_json_request.end(),begin);
+    _tcp_client.send((void*)&buf[0],buf.size());
+    return;
+}
+
+RpcClient::RpcClient(const char* ip,int port)
+{
+    _p = new ClientImpl(ip,port);
+}
+
+RpcClient::RpcClient(const RpcClient& c)
+{
+    _p = new ClientImpl(*(ClientImpl*)c._p);
+}
+
+RpcClient::~RpcClient()
+{
+    delete (ClientImpl*)_P;
+}
+
+RpcClient::call(const TinyJson& request,TinyJson& result)
+{
+    return ((ClientImpl*)_p)->call(request,result);
+}
+
+RpcClient::close()
+{
+    return ((ClientImpl*)_p)->close();
+}
+
+RpcClient::ping()
+{
+    TinyJson request;
+    TinyJson result;
+    request["service"].Set("ping");
+    this->call(request,result);
 }
