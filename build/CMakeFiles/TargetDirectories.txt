@@ -1,0 +1,8 @@
+C:/product/minico-rpc/build/CMakeFiles/edit_cache.dir
+C:/product/minico-rpc/build/CMakeFiles/rebuild_cache.dir
+C:/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir
+C:/product/minico-rpc/build/src/CMakeFiles/edit_cache.dir
+C:/product/minico-rpc/build/src/CMakeFiles/rebuild_cache.dir
+C:/product/minico-rpc/build/example/CMakeFiles/minico_test.dir
+C:/product/minico-rpc/build/example/CMakeFiles/edit_cache.dir
+C:/product/minico-rpc/build/example/CMakeFiles/rebuild_cache.dir

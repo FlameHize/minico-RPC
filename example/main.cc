@@ -1,132 +1,104 @@
 #include <iostream>
+#include <string>
+#include <unordered_map>
 #include <sys/sysinfo.h>
 
 #include "../include/processor.h"
 #include "../include/minico_api.h"
 #include "../include/socket.h"
 #include "../include/mutex.h"
+
 #include "../include/logger.h"
 #include "../include/tcp_server.h"
+#include "../include/rpc_server.h"
 
 using namespace minico;
 
-
-//minico http response with multi acceptor test 
-//Ã¿ÌõÏß³ÌÒ»¸öacceptorµÄ·şÎñ
-void multi_acceptor_server_test()
+/** æ³¨å†Œçš„ä¸€ç§Service*/
+class HelloWorld : public Service
 {
-	auto tCnt = ::get_nprocs_conf();
-	for (int i = 0; i < tCnt; ++i)
+  public:
+	typedef void (*Func)(const TinyJson& request,TinyJson& result);
+
+	HelloWorld() : _name("HelloWorld")
 	{
-		minico::co_go(
-			[]
-			{
-				minico::Socket listener;
-				if (listener.isUseful())
-				{
-					listener.setTcpNoDelay(true);
-					listener.setReuseAddr(true);
-					listener.setReusePort(true);
-					if (listener.bind(nullptr,8099) < 0)
-					{
-						return;
-					}
-					listener.listen();
-				}
-				while (1)
-				{
-					minico::Socket* conn = new minico::Socket(listener.accept());
-					conn->setTcpNoDelay(true);
-					minico::co_go(
-						[conn]
-						{
-							std::string hello("HTTP/1.0 200 OK\r\nServer: minico/0.1.0\r\nContent-Length: 72\r\nContent-Type: text/html\r\n\r\n<HTML><TITLE>hello</TITLE>\r\n<BODY><P>hello word!\r\n</BODY></HTML>\r\n");
-							//std::string hello("<HTML><TITLE>hello</TITLE>\r\n<BODY><P>hello word!\r\n</BODY></HTML>\r\n");
-							char buf[1024];
-							if (conn->read((void*)buf, 1024) > 0)
-							{
-								conn->send(hello.c_str(), hello.size());
-								minico::co_sleep(50);//ĞèÒªµÈÒ»ÏÂ£¬·ñÔò»¹Ã»·¢ËÍÍê±Ï¾Í¹Ø±ÕÁË
-							}
-							delete conn;
-						}
-						);
-				}
-			}
-			,parameter::coroutineStackSize, i);
+		_methods["hello"] = &HelloWorld::hello;
+		_methods["world"] = &HelloWorld::world;
 	}
-	
-}
-
-//¶ÁĞ´Ëø²âÊÔ
-void mutex_test(minico::RWMutex& mu){
-	for(int i = 0; i < 10; ++i)
-	if(i < 5){
-		minico::co_go(
-		[&mu, i]{
-			mu.rlock();
-			std::cout << i << " : start reading" << std::endl;
-			minico::co_sleep(100);
-			std::cout << i << " : finish reading" << std::endl;
-			mu.runlock();
-			mu.wlock();
-			std::cout << i << " : start writing" << std::endl;
-			minico::co_sleep(100);
-			std::cout << i << " : finish writing" << std::endl;
-			mu.wunlock();
-		}
-		);
-	}else{
-		minico::co_go(
-		[&mu, i]{
-			mu.wlock();
-			std::cout << i << " : start writing" << std::endl;
-			minico::co_sleep(100);
-			std::cout << i << " : finish writing" << std::endl;
-			mu.wunlock();
-			mu.rlock();
-			std::cout << i << " : start reading" << std::endl;
-			minico::co_sleep(100);
-			std::cout << i << " : finish reading" << std::endl;
-			mu.runlock();
-		}
-	);
+	virtual const char* name() const
+	{
+		return _name.c_str();
 	}
-	
-}
+	virtual ~HelloWorld() {}
 
-/** ËùÓĞµÄ¿Í»§¶Ë³ÌĞò±ØĞëÔÚÒ»¸öĞ­³ÌÖĞÔËĞĞ*/
-void client_test()
+	/** å®é™…çš„æœåŠ¡ç±»çš„å¤„ç†å‡½æ•°*/
+	virtual void process(const TinyJson& request,TinyJson& result)
+	{
+		std::string method = request.Get<std::string>("method");
+		if(method.empty())
+		{
+			result["err"].Set(400);
+			result["errmsg"].Set("request has no method");
+			return;
+		}
+		auto it = _methods.find(method);
+		if(it == _methods.end())
+		{
+			result["err"].Set(404);
+			result["errmsg"].Set("method not found");
+			return;
+		}
+		/** æ‰¾åˆ°æœåŠ¡çš„å¯¹åº”æ¥å£ é‚£ä¹ˆæ‰§è¡Œå³å¯*/
+		(this->*(it->second))(request,result);
+	}
+	/** éœ€è¦ç”¨æˆ·é‡è½½çš„å®é™…é€»è¾‘éƒ¨åˆ†*/
+	virtual void hello(const TinyJson& request,TinyJson& result) = 0;
+	virtual void world(const TinyJson& request,TinyJson& result) = 0;
+  private:
+	std::unordered_map<std::string,Func> _methods;
+	std::string _name;
+};
+
+class HelloWorldImpl : public HelloWorld
 {
-    minico::co_go([](){
-        while(true)
-        {
-            Client client;
-            client.connect("127,0,0,1",12345);
-            char buf[1024];
-            client.send("ping", 4);
-            client.recv(buf, 1024);
-            std::cout << std::string(buf) << std::endl;
-        }
-         
-    });
+  public:
+	HelloWorldImpl() = default;
+	virtual ~HelloWorldImpl() = default;
+	
+	virtual void hello(const TinyJson& request,TinyJson& result)
+	{
+		result["method"].Set("hello");
+		result["err"].Set(200);
+		result["errmsg"].Set("ok");
+	}
+	virtual void world(const TinyJson& request,TinyJson& result)
+	{
+		result["method"].Set("world");
+		result["err"].Set(200);
+		result["errmsg"].Set("ok");
+	}
+};
+
+void client_func()
+{
+	RpcClient client("127.0.0.1",12345);
+	TinyJson request;
+	TinyJson result;
+	request["service"].Set("HelloWorld");
+	request["method"].Set("method","hello");
+	client.call(request,result);
+	return;
 }
 
 int main()
 {
-	//netco::RWMutex mu;
-	//mutex_test(mu);
-	//single_acceptor_server_test();
-	//multi_acceptor_server_test();
-	//client_test();
-	//joinÓÃÓÚ×èÈû µÈ´ıËùÓĞµÄÏß²ã½áÊø ²ÅÄÜ½áÊøÖ÷Ïß²ã£¨Ò²¾ÍÊÇµ±Ç°µÄmain½ø³Ì£©
+
     LOG_INFO("start the test");
     
-    Server tcp_server;
-    tcp_server.start_multi(nullptr,12345);
+    RpcServer s;
+	s.start(nullptr,12345);
 
-    client_test();
-
+	minico::co_go(client_func);
 	minico::sche_join();
 	std::cout << "end" << std::endl;
 	return 0;

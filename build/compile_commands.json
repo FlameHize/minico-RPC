@@ -1,0 +1,72 @@
+[
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\logger.cc.obj -c C:\\product\\minico-rpc\\src\\logger.cc",
+  "file": "C:/product/minico-rpc/src/logger.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\context.cc.obj -c C:\\product\\minico-rpc\\src\\context.cc",
+  "file": "C:/product/minico-rpc/src/context.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\coroutine.cc.obj -c C:\\product\\minico-rpc\\src\\coroutine.cc",
+  "file": "C:/product/minico-rpc/src/coroutine.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\epoller.cc.obj -c C:\\product\\minico-rpc\\src\\epoller.cc",
+  "file": "C:/product/minico-rpc/src/epoller.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\timer.cc.obj -c C:\\product\\minico-rpc\\src\\timer.cc",
+  "file": "C:/product/minico-rpc/src/timer.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\mstime.cc.obj -c C:\\product\\minico-rpc\\src\\mstime.cc",
+  "file": "C:/product/minico-rpc/src/mstime.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\mutex.cc.obj -c C:\\product\\minico-rpc\\src\\mutex.cc",
+  "file": "C:/product/minico-rpc/src/mutex.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\processor.cc.obj -c C:\\product\\minico-rpc\\src\\processor.cc",
+  "file": "C:/product/minico-rpc/src/processor.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\processor_selector.cc.obj -c C:\\product\\minico-rpc\\src\\processor_selector.cc",
+  "file": "C:/product/minico-rpc/src/processor_selector.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\socket.cc.obj -c C:\\product\\minico-rpc\\src\\socket.cc",
+  "file": "C:/product/minico-rpc/src/socket.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\scheduler.cc.obj -c C:\\product\\minico-rpc\\src\\scheduler.cc",
+  "file": "C:/product/minico-rpc/src/scheduler.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\minico_api.cc.obj -c C:\\product\\minico-rpc\\src\\minico_api.cc",
+  "file": "C:/product/minico-rpc/src/minico_api.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -Dminico_rpc_EXPORTS -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o src\\CMakeFiles\\minico-rpc.dir\\tcp_server.cc.obj -c C:\\product\\minico-rpc\\src\\tcp_server.cc",
+  "file": "C:/product/minico-rpc/src/tcp_server.cc"
+},
+{
+  "directory": "C:/product/minico-rpc/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\2019\\COMMUN~1\\VC\\Tools\\Llvm\\bin\\clang.exe -I../include -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -o example\\CMakeFiles\\minico_test.dir\\main.cc.obj -c C:\\product\\minico-rpc\\example\\main.cc",
+  "file": "C:/product/minico-rpc/example/main.cc"
+}
+]
