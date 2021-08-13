@@ -9,6 +9,7 @@
 #include "../include/mutex.h"
 
 #include "../include/logger.h"
+
 #include "../include/tcp_server.h"
 #include "../include/rpc_server.h"
 
@@ -18,7 +19,7 @@ using namespace minico;
 class HelloWorld : public Service
 {
   public:
-	typedef void (*Func)(const TinyJson& request,TinyJson& result);
+	typedef void (HelloWorld::*Func)(TinyJson& request,TinyJson& result);
 
 	HelloWorld() : _name("HelloWorld")
 	{
@@ -32,7 +33,7 @@ class HelloWorld : public Service
 	virtual ~HelloWorld() {}
 
 	/** 实际的服务类的处理函数*/
-	virtual void process(const TinyJson& request,TinyJson& result)
+	virtual void process(TinyJson& request,TinyJson& result) override
 	{
 		std::string method = request.Get<std::string>("method");
 		if(method.empty())
@@ -52,8 +53,8 @@ class HelloWorld : public Service
 		(this->*(it->second))(request,result);
 	}
 	/** 需要用户重载的实际逻辑部分*/
-	virtual void hello(const TinyJson& request,TinyJson& result) = 0;
-	virtual void world(const TinyJson& request,TinyJson& result) = 0;
+	virtual void hello(TinyJson& request,TinyJson& result) = 0;
+	virtual void world(TinyJson& request,TinyJson& result) = 0;
   private:
 	std::unordered_map<std::string,Func> _methods;
 	std::string _name;
@@ -65,13 +66,13 @@ class HelloWorldImpl : public HelloWorld
 	HelloWorldImpl() = default;
 	virtual ~HelloWorldImpl() = default;
 	
-	virtual void hello(const TinyJson& request,TinyJson& result)
+	virtual void hello(TinyJson& request,TinyJson& result)
 	{
 		result["method"].Set("hello");
 		result["err"].Set(200);
 		result["errmsg"].Set("ok");
 	}
-	virtual void world(const TinyJson& request,TinyJson& result)
+	virtual void world(TinyJson& request,TinyJson& result)
 	{
 		result["method"].Set("world");
 		result["err"].Set(200);
@@ -85,7 +86,7 @@ void client_func()
 	TinyJson request;
 	TinyJson result;
 	request["service"].Set("HelloWorld");
-	request["method"].Set("method","hello");
+	request["method"].Set("hello");
 	client.call(request,result);
 	return;
 }
@@ -96,6 +97,7 @@ int main()
     LOG_INFO("start the test");
     
     RpcServer s;
+	s.add_service(new HelloWorldImpl);
 	s.start(nullptr,12345);
 
 	minico::co_go(client_func);

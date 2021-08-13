@@ -1,6 +1,7 @@
 
 #include "../include/rpc_server.h"
 #include <unordered_map>
+#include <vector>
 
 /** 编解码器 是否需要 需要的话就加一层rpc信息头部的封装 8 bytes*/
 struct RpcHeader
@@ -16,7 +17,7 @@ static const uint16_t DefaultMagic = 0x7777;
 void set_rpc_header(void* header,int msg_len)
 {
     ((RpcHeader*) header)->magic = DefaultMagic;
-    ((RpcHeader*) header)->len = hton32(msg_len);
+    ((RpcHeader*) header)->len = htonl(msg_len);
 }
 
 
@@ -31,7 +32,7 @@ class Ping : public Service
 
     virtual const char* name() const override { return "ping";}
 
-    virtual void process(const TinyJson& request,TinyJson& result) override
+    virtual void process(TinyJson& request,TinyJson& result) override
     {
         result["err"].Set(200);
         result["errmsg"].Set("pong");
@@ -47,6 +48,7 @@ class ServerImpl
     ServerImpl() : _conn_number(0) 
     {
         this->add_service(new Ping);
+        LOG_INFO("already add service ping");
     }
 
     ~ServerImpl() = default;
@@ -76,15 +78,18 @@ class ServerImpl
     */
     void start(const char* ip,int port)
     {
-        /** 注册自定义的连接回调函数*/
-        _tcp_server.register_connection(&ServerImpl::on_connection,this);
+        /** 注册自定义的连接回调函数,这里需要注意占位符问题*/
+        std::function<void(minico::Socket*)> on_connection = 
+            std::bind(&ServerImpl::on_connection,this,std::placeholders::_1);
+        _tcp_server.register_connection(on_connection);
+        LOG_INFO("register the serverimpl connection");
         /** 开启服务器运行*/
         _tcp_server.start(ip,port);
 
     }
 
     /** 业务处理逻辑函数*/
-    void process(const TinyJson& request,TinyJson& result);
+    void process(TinyJson& request,TinyJson& result);
 
   private:
     /** 基础的tcp服务器,这里先保存了一个新的服务器*/
@@ -101,7 +106,7 @@ class ServerImpl
 /**
  * @brief 业务逻辑:找到相应的服务并执行对应的处理逻辑
 */
-void ServerImpl::process(const TinyJson& request,TinyJson& result)
+void ServerImpl::process(TinyJson& request,TinyJson& result)
 {
     /** 解析客户端传入的服务key-value,获取对应的服务名称*/
     std::string service = request.Get<std::string>("service");
@@ -160,7 +165,7 @@ void ServerImpl::on_connection(minico::Socket* conn)
         received_bytes = connection->read(&rpc_header,sizeof(rpc_header));
         
         /** 拿到收到的rpc的信息的长度 字节序需要转换为网络序*/
-        rpc_recv_message_len = ntoh32(rpc_header.len);
+        rpc_recv_message_len = ntohl(rpc_header.len);
 
         /** 对缓冲区进行初步处理 调整大小用于接收rpc实际数据信息,并接收信息*/
         buf.resize(rpc_recv_message_len); 
@@ -239,7 +244,7 @@ class ClientImpl
     ~ClientImpl() = default;
 
     /** 核心RPC请求函数*/
-    void call(const TinyJson& request,TinyJson& result);
+    void call(TinyJson& request,TinyJson& result);
 
     void close()
     {
@@ -250,7 +255,7 @@ class ClientImpl
     Client _tcp_client;
 
     /** 数据缓冲区*/
-    vector<char> buf;
+    std::vector<char> buf;
     
     void connect(){
         _tcp_client.connect();
@@ -258,12 +263,12 @@ class ClientImpl
 };
 
 
-void ClientImpl::call(const TinyJson& request,TinyJson& result)
+void ClientImpl::call(TinyJson& request,TinyJson& result)
 {
-    /** 这里少了一步逻辑 需要先判断一下客户端是否已经连接*/
-    RpcHeader rpc_header;
-
+    /** 先把写入的json转换为string格式*/
     std::string str_json_request = request.WriteJson();
+    LOG_INFO("%s",str_json_request);
+
     int rpc_send_message_len = str_json_request.length();
 
     /** 拼接头部和消息主体 发送信息*/
@@ -292,20 +297,20 @@ RpcClient::RpcClient(const RpcClient& c)
 
 RpcClient::~RpcClient()
 {
-    delete (ClientImpl*)_P;
+    delete (ClientImpl*)_p;
 }
 
-RpcClient::call(const TinyJson& request,TinyJson& result)
+void RpcClient::call(TinyJson& request,TinyJson& result)
 {
     return ((ClientImpl*)_p)->call(request,result);
 }
 
-RpcClient::close()
+void RpcClient::close()
 {
     return ((ClientImpl*)_p)->close();
 }
 
-RpcClient::ping()
+void RpcClient::ping()
 {
     TinyJson request;
     TinyJson result;

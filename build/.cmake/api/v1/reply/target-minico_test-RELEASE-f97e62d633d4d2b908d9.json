@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "C:/product/minico-rpc/bin/minico_test.exe"
-		},
-		{
-			"path" : "C:/product/minico-rpc/bin/minico_test.pdb"
+			"path" : "/home/zhuguangxu/product/minico-rpc/bin/minico_test"
 		}
 	],
 	"backtrace" : 1,
@@ -56,14 +53,14 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread"
+					"fragment" : "-std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread  "
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 4,
-					"path" : "C:/product/minico-rpc/include"
+					"path" : "/home/zhuguangxu/product/minico-rpc/include"
 				}
 			],
 			"language" : "CXX",
@@ -90,23 +87,23 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-Xlinker /subsystem:console",
+				"fragment" : "-rdynamic",
 				"role" : "flags"
 			},
 			{
-				"backtrace" : 2,
-				"fragment" : "..\\..\\lib\\minico-rpc.lib",
+				"fragment" : "-Wl,-rpath,/home/zhuguangxu/product/minico-rpc/lib",
 				"role" : "libraries"
 			},
 			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames",
+				"backtrace" : 2,
+				"fragment" : "../../lib/libminico-rpc.so",
 				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "minico_test",
-	"nameOnDisk" : "minico_test.exe",
+	"nameOnDisk" : "minico_test",
 	"paths" : 
 	{
 		"build" : "example",

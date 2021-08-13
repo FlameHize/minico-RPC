@@ -19,7 +19,7 @@ class Service
     virtual const char* name() const  = 0;
 
     /** 实际进行服务数据处理的功能函数 可以更改为不同的策略*/
-    virtual void process(const TinyJson& request,TinyJson& result) = 0;
+    virtual void process(TinyJson& request,TinyJson& result) = 0;
 };
 
 /**
@@ -56,15 +56,15 @@ class RpcClient
 {
   public:
     RpcClient(const char* ip,int port);
-    RpcClient(const Client& c);
-    ~Client();
+    RpcClient(const RpcClient& c);
+    ~RpcClient();
 
-    void operator=(const Client& c) = delete;
+    void operator=(const RpcClient& c) = delete;
 
     /**
      * @brief 进行一次rpc请求，从result形参中直接得到结果
     */
-    void call(const TinyJson& result,TinyJson& result);
+    void call(TinyJson& request,TinyJson& result);
 
     /** 客户端心跳检测*/
     void ping();

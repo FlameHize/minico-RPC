@@ -2,13 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "C:/product/minico-rpc/lib/minico-rpc.dll"
-		},
-		{
-			"path" : "C:/product/minico-rpc/lib/minico-rpc.lib"
-		},
-		{
-			"path" : "C:/product/minico-rpc/lib/minico-rpc.pdb"
+			"path" : "/home/zhuguangxu/product/minico-rpc/lib/libminico-rpc.so"
 		}
 	],
 	"backtrace" : 1,
@@ -52,7 +46,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread"
+					"fragment" : "-std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -fPIC  "
 				}
 			],
 			"defines" : 
@@ -65,7 +59,7 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "C:/product/minico-rpc/include"
+					"path" : "/home/zhuguangxu/product/minico-rpc/include"
 				}
 			],
 			"language" : "CXX",
@@ -83,7 +77,8 @@
 				9,
 				10,
 				11,
-				12
+				12,
+				13
 			]
 		}
 	],
@@ -95,16 +90,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "minico-rpc",
-	"nameOnDisk" : "minico-rpc.dll",
+	"nameOnDisk" : "libminico-rpc.so",
 	"paths" : 
 	{
 		"build" : "src",
@@ -128,7 +119,8 @@
 				9,
 				10,
 				11,
-				12
+				12,
+				13
 			]
 		}
 	],
@@ -210,6 +202,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/tcp_server.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/rpc_server.cc",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -83,8 +83,11 @@ public:
         /** 拿到一个socket*/
         client_socket = new minico::Socket();
     }
+    Client(const Client& c) : server_ip(c.server_ip),server_port(c.server_port),client_socket(new minico::Socket()){
+
+    }
+    void operator=(const Client& c) = delete;
     virtual ~Client();
-    DISALLOW_COPY_MOVE_AND_ASSIGN(Client);
     
     void connect();
     void disconnect();

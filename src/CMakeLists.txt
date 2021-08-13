@@ -11,4 +11,6 @@ add_library(minico-rpc SHARED
     socket.cc
     scheduler.cc
     minico_api.cc
-    tcp_server.cc)
+    tcp_server.cc
+    rpc_server.cc
+    )

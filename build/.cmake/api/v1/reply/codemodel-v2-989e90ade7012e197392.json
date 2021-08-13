@@ -70,14 +70,14 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "minico-rpc::@145eef247bfb46b6828c",
-					"jsonFile" : "target-minico-rpc-RELEASE-7c23a2ccf96d37b6645a.json",
+					"jsonFile" : "target-minico-rpc-RELEASE-c2acd957b85210164711.json",
 					"name" : "minico-rpc",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "minico_test::@70983d692f648185febe",
-					"jsonFile" : "target-minico_test-RELEASE-b08b3d45fd01daa515c4.json",
+					"jsonFile" : "target-minico_test-RELEASE-f97e62d633d4d2b908d9.json",
 					"name" : "minico_test",
 					"projectIndex" : 0
 				}
@@ -87,12 +87,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/product/minico-rpc/build",
-		"source" : "C:/product/minico-rpc"
+		"build" : "/home/zhuguangxu/product/minico-rpc/build",
+		"source" : "/home/zhuguangxu/product/minico-rpc"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 2
+		"minor" : 0
 	}
 }
