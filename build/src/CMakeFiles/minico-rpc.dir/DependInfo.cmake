@@ -13,10 +13,13 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/zhuguangxu/product/minico-rpc/src/mutex.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/mutex.cc.o"
   "/home/zhuguangxu/product/minico-rpc/src/processor.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/processor.cc.o"
   "/home/zhuguangxu/product/minico-rpc/src/processor_selector.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/processor_selector.cc.o"
-  "/home/zhuguangxu/product/minico-rpc/src/rpc_server.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/rpc_server.cc.o"
+  "/home/zhuguangxu/product/minico-rpc/src/rpc/rpc_client.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o"
+  "/home/zhuguangxu/product/minico-rpc/src/rpc/rpc_header.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o"
+  "/home/zhuguangxu/product/minico-rpc/src/rpc/rpc_server.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o"
   "/home/zhuguangxu/product/minico-rpc/src/scheduler.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/scheduler.cc.o"
   "/home/zhuguangxu/product/minico-rpc/src/socket.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/socket.cc.o"
-  "/home/zhuguangxu/product/minico-rpc/src/tcp_server.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/tcp_server.cc.o"
+  "/home/zhuguangxu/product/minico-rpc/src/tcp/tcp_client.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o"
+  "/home/zhuguangxu/product/minico-rpc/src/tcp/tcp_server.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o"
   "/home/zhuguangxu/product/minico-rpc/src/timer.cc" "/home/zhuguangxu/product/minico-rpc/build/src/CMakeFiles/minico-rpc.dir/timer.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
@@ -29,6 +32,8 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
+  "../include/tcp"
+  "../include/rpc"
   )
 
 # Targets to which this target links.

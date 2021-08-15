@@ -15,11 +15,14 @@ example/CMakeFiles/minico_test.dir/main.cc.o: ../include/objpool.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/parameter.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/processor.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/processor_selector.h
-example/CMakeFiles/minico_test.dir/main.cc.o: ../include/rpc_server.h
+example/CMakeFiles/minico_test.dir/main.cc.o: ../include/rpc/rpc_client.h
+example/CMakeFiles/minico_test.dir/main.cc.o: ../include/rpc/rpc_server.h
+example/CMakeFiles/minico_test.dir/main.cc.o: ../include/rpc/service.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/scheduler.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/socket.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/spinlock.h
-example/CMakeFiles/minico_test.dir/main.cc.o: ../include/tcp_server.h
+example/CMakeFiles/minico_test.dir/main.cc.o: ../include/tcp/tcp_client.h
+example/CMakeFiles/minico_test.dir/main.cc.o: ../include/tcp/tcp_server.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/timer.h
 example/CMakeFiles/minico_test.dir/main.cc.o: ../include/utils.h
 

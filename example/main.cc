@@ -10,8 +10,8 @@
 
 #include "../include/logger.h"
 
-#include "../include/tcp_server.h"
-#include "../include/rpc_server.h"
+#include "../include/rpc/rpc_server.h"
+#include "../include/rpc/rpc_client.h"
 
 using namespace minico;
 
@@ -80,27 +80,48 @@ class HelloWorldImpl : public HelloWorld
 	}
 };
 
-void client_func()
+
+void tcp_client_test()
 {
-	RpcClient client("127.0.0.1",12345);
-	TinyJson request;
-	TinyJson result;
-	request["service"].Set("HelloWorld");
-	request["method"].Set("hello");
-	client.call(request,result);
-	return;
+	minico::co_go([](){
+		TcpClient client;
+		client.connect("127.0.0.1",12345);
+		char buf[1024];
+		for(int i = 0; i < 5;++i)
+		{
+			LOG_INFO("this is %d client send",i);
+			client.send("ping",4);
+			client.recv(buf,1024);
+			LOG_INFO(buf);
+		}
+
+	});
+}
+
+/** rpc send test result : success*/
+void rpc_client_test()
+{
+	minico::co_go([](){
+		RpcClient client;
+		client.connect("127.0.0.1",12345);
+		client.ping();
+	});
 }
 
 int main()
 {
-
     LOG_INFO("start the test");
-    
-    RpcServer s;
-	s.add_service(new HelloWorldImpl);
-	s.start(nullptr,12345);
 
-	minico::co_go(client_func);
+	/** test the tcp client and server  result : success*/
+	// TcpServer s;
+	// s.start(nullptr,12345);
+	// tcp_client_test();
+
+	/** test the rpc client and server*/
+	RpcServer rpc_server;
+	rpc_server.start(nullptr,12345);
+	rpc_client_test();
+
 	minico::sche_join();
 	std::cout << "end" << std::endl;
 	return 0;

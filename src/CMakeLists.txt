@@ -11,6 +11,9 @@ add_library(minico-rpc SHARED
     socket.cc
     scheduler.cc
     minico_api.cc
-    tcp_server.cc
-    rpc_server.cc
+    ${PROJECT_SOURCE_DIR}/src/tcp/tcp_client.cc
+    ${PROJECT_SOURCE_DIR}/src/tcp/tcp_server.cc
+    ${PROJECT_SOURCE_DIR}/src/rpc/rpc_client.cc
+    ${PROJECT_SOURCE_DIR}/src/rpc/rpc_server.cc
+    ${PROJECT_SOURCE_DIR}/src/rpc/rpc_header.cc
     )

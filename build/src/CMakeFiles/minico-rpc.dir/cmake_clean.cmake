@@ -10,10 +10,13 @@ file(REMOVE_RECURSE
   "CMakeFiles/minico-rpc.dir/mutex.cc.o"
   "CMakeFiles/minico-rpc.dir/processor.cc.o"
   "CMakeFiles/minico-rpc.dir/processor_selector.cc.o"
-  "CMakeFiles/minico-rpc.dir/rpc_server.cc.o"
+  "CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o"
+  "CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o"
+  "CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o"
   "CMakeFiles/minico-rpc.dir/scheduler.cc.o"
   "CMakeFiles/minico-rpc.dir/socket.cc.o"
-  "CMakeFiles/minico-rpc.dir/tcp_server.cc.o"
+  "CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o"
+  "CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o"
   "CMakeFiles/minico-rpc.dir/timer.cc.o"
 )
 

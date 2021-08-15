@@ -368,32 +368,86 @@ processor_selector.cc.s:
 	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/processor_selector.cc.s
 .PHONY : processor_selector.cc.s
 
-rpc_server.o: rpc_server.cc.o
+rpc/rpc_client.o: rpc/rpc_client.cc.o
 
-.PHONY : rpc_server.o
+.PHONY : rpc/rpc_client.o
 
 # target to build an object file
-rpc_server.cc.o:
-	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc_server.cc.o
-.PHONY : rpc_server.cc.o
+rpc/rpc_client.cc.o:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o
+.PHONY : rpc/rpc_client.cc.o
 
-rpc_server.i: rpc_server.cc.i
+rpc/rpc_client.i: rpc/rpc_client.cc.i
 
-.PHONY : rpc_server.i
+.PHONY : rpc/rpc_client.i
 
 # target to preprocess a source file
-rpc_server.cc.i:
-	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc_server.cc.i
-.PHONY : rpc_server.cc.i
+rpc/rpc_client.cc.i:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.i
+.PHONY : rpc/rpc_client.cc.i
 
-rpc_server.s: rpc_server.cc.s
+rpc/rpc_client.s: rpc/rpc_client.cc.s
 
-.PHONY : rpc_server.s
+.PHONY : rpc/rpc_client.s
 
 # target to generate assembly for a file
-rpc_server.cc.s:
-	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc_server.cc.s
-.PHONY : rpc_server.cc.s
+rpc/rpc_client.cc.s:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.s
+.PHONY : rpc/rpc_client.cc.s
+
+rpc/rpc_header.o: rpc/rpc_header.cc.o
+
+.PHONY : rpc/rpc_header.o
+
+# target to build an object file
+rpc/rpc_header.cc.o:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o
+.PHONY : rpc/rpc_header.cc.o
+
+rpc/rpc_header.i: rpc/rpc_header.cc.i
+
+.PHONY : rpc/rpc_header.i
+
+# target to preprocess a source file
+rpc/rpc_header.cc.i:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.i
+.PHONY : rpc/rpc_header.cc.i
+
+rpc/rpc_header.s: rpc/rpc_header.cc.s
+
+.PHONY : rpc/rpc_header.s
+
+# target to generate assembly for a file
+rpc/rpc_header.cc.s:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.s
+.PHONY : rpc/rpc_header.cc.s
+
+rpc/rpc_server.o: rpc/rpc_server.cc.o
+
+.PHONY : rpc/rpc_server.o
+
+# target to build an object file
+rpc/rpc_server.cc.o:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o
+.PHONY : rpc/rpc_server.cc.o
+
+rpc/rpc_server.i: rpc/rpc_server.cc.i
+
+.PHONY : rpc/rpc_server.i
+
+# target to preprocess a source file
+rpc/rpc_server.cc.i:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.i
+.PHONY : rpc/rpc_server.cc.i
+
+rpc/rpc_server.s: rpc/rpc_server.cc.s
+
+.PHONY : rpc/rpc_server.s
+
+# target to generate assembly for a file
+rpc/rpc_server.cc.s:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.s
+.PHONY : rpc/rpc_server.cc.s
 
 scheduler.o: scheduler.cc.o
 
@@ -449,32 +503,59 @@ socket.cc.s:
 	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/socket.cc.s
 .PHONY : socket.cc.s
 
-tcp_server.o: tcp_server.cc.o
+tcp/tcp_client.o: tcp/tcp_client.cc.o
 
-.PHONY : tcp_server.o
+.PHONY : tcp/tcp_client.o
 
 # target to build an object file
-tcp_server.cc.o:
-	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp_server.cc.o
-.PHONY : tcp_server.cc.o
+tcp/tcp_client.cc.o:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o
+.PHONY : tcp/tcp_client.cc.o
 
-tcp_server.i: tcp_server.cc.i
+tcp/tcp_client.i: tcp/tcp_client.cc.i
 
-.PHONY : tcp_server.i
+.PHONY : tcp/tcp_client.i
 
 # target to preprocess a source file
-tcp_server.cc.i:
-	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp_server.cc.i
-.PHONY : tcp_server.cc.i
+tcp/tcp_client.cc.i:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.i
+.PHONY : tcp/tcp_client.cc.i
 
-tcp_server.s: tcp_server.cc.s
+tcp/tcp_client.s: tcp/tcp_client.cc.s
 
-.PHONY : tcp_server.s
+.PHONY : tcp/tcp_client.s
 
 # target to generate assembly for a file
-tcp_server.cc.s:
-	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp_server.cc.s
-.PHONY : tcp_server.cc.s
+tcp/tcp_client.cc.s:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.s
+.PHONY : tcp/tcp_client.cc.s
+
+tcp/tcp_server.o: tcp/tcp_server.cc.o
+
+.PHONY : tcp/tcp_server.o
+
+# target to build an object file
+tcp/tcp_server.cc.o:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o
+.PHONY : tcp/tcp_server.cc.o
+
+tcp/tcp_server.i: tcp/tcp_server.cc.i
+
+.PHONY : tcp/tcp_server.i
+
+# target to preprocess a source file
+tcp/tcp_server.cc.i:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.i
+.PHONY : tcp/tcp_server.cc.i
+
+tcp/tcp_server.s: tcp/tcp_server.cc.s
+
+.PHONY : tcp/tcp_server.s
+
+# target to generate assembly for a file
+tcp/tcp_server.cc.s:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.s
+.PHONY : tcp/tcp_server.cc.s
 
 timer.o: timer.cc.o
 
@@ -539,18 +620,27 @@ help:
 	@echo "... processor_selector.o"
 	@echo "... processor_selector.i"
 	@echo "... processor_selector.s"
-	@echo "... rpc_server.o"
-	@echo "... rpc_server.i"
-	@echo "... rpc_server.s"
+	@echo "... rpc/rpc_client.o"
+	@echo "... rpc/rpc_client.i"
+	@echo "... rpc/rpc_client.s"
+	@echo "... rpc/rpc_header.o"
+	@echo "... rpc/rpc_header.i"
+	@echo "... rpc/rpc_header.s"
+	@echo "... rpc/rpc_server.o"
+	@echo "... rpc/rpc_server.i"
+	@echo "... rpc/rpc_server.s"
 	@echo "... scheduler.o"
 	@echo "... scheduler.i"
 	@echo "... scheduler.s"
 	@echo "... socket.o"
 	@echo "... socket.i"
 	@echo "... socket.s"
-	@echo "... tcp_server.o"
-	@echo "... tcp_server.i"
-	@echo "... tcp_server.s"
+	@echo "... tcp/tcp_client.o"
+	@echo "... tcp/tcp_client.i"
+	@echo "... tcp/tcp_client.s"
+	@echo "... tcp/tcp_server.o"
+	@echo "... tcp/tcp_server.i"
+	@echo "... tcp/tcp_server.s"
 	@echo "... timer.o"
 	@echo "... timer.i"
 	@echo "... timer.s"

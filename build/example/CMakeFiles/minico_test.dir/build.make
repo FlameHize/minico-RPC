@@ -60,15 +60,15 @@ include example/CMakeFiles/minico_test.dir/flags.make
 example/CMakeFiles/minico_test.dir/main.cc.o: example/CMakeFiles/minico_test.dir/flags.make
 example/CMakeFiles/minico_test.dir/main.cc.o: ../example/main.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object example/CMakeFiles/minico_test.dir/main.cc.o"
-	cd /home/zhuguangxu/product/minico-rpc/build/example && /bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/minico_test.dir/main.cc.o -c /home/zhuguangxu/product/minico-rpc/example/main.cc
+	cd /home/zhuguangxu/product/minico-rpc/build/example && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/minico_test.dir/main.cc.o -c /home/zhuguangxu/product/minico-rpc/example/main.cc
 
 example/CMakeFiles/minico_test.dir/main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/minico_test.dir/main.cc.i"
-	cd /home/zhuguangxu/product/minico-rpc/build/example && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhuguangxu/product/minico-rpc/example/main.cc > CMakeFiles/minico_test.dir/main.cc.i
+	cd /home/zhuguangxu/product/minico-rpc/build/example && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhuguangxu/product/minico-rpc/example/main.cc > CMakeFiles/minico_test.dir/main.cc.i
 
 example/CMakeFiles/minico_test.dir/main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/minico_test.dir/main.cc.s"
-	cd /home/zhuguangxu/product/minico-rpc/build/example && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuguangxu/product/minico-rpc/example/main.cc -o CMakeFiles/minico_test.dir/main.cc.s
+	cd /home/zhuguangxu/product/minico-rpc/build/example && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuguangxu/product/minico-rpc/example/main.cc -o CMakeFiles/minico_test.dir/main.cc.s
 
 # Object files for target minico_test
 minico_test_OBJECTS = \

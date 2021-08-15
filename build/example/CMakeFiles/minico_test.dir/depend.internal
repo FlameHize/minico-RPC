@@ -16,10 +16,13 @@ example/CMakeFiles/minico_test.dir/main.cc.o
  /home/zhuguangxu/product/minico-rpc/include/parameter.h
  /home/zhuguangxu/product/minico-rpc/include/processor.h
  /home/zhuguangxu/product/minico-rpc/include/processor_selector.h
- /home/zhuguangxu/product/minico-rpc/include/rpc_server.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_server.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/service.h
  /home/zhuguangxu/product/minico-rpc/include/scheduler.h
  /home/zhuguangxu/product/minico-rpc/include/socket.h
  /home/zhuguangxu/product/minico-rpc/include/spinlock.h
- /home/zhuguangxu/product/minico-rpc/include/tcp_server.h
+ /home/zhuguangxu/product/minico-rpc/include/tcp/tcp_client.h
+ /home/zhuguangxu/product/minico-rpc/include/tcp/tcp_server.h
  /home/zhuguangxu/product/minico-rpc/include/timer.h
  /home/zhuguangxu/product/minico-rpc/include/utils.h
