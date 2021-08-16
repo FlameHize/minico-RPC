@@ -104,7 +104,16 @@ void rpc_client_test()
 	minico::co_go([](){
 		RpcClient client;
 		client.connect("127.0.0.1",12345);
-		client.ping();
+		//client.ping();
+		TinyJson request;
+		TinyJson result;
+		request["service"].Set<std::string>("HelloWorld");
+		request["method"].Set<std::string>("hello");
+		client.call(request,result);
+		int errcode = result.Get<int>("err");
+		std::string errmsg = result.Get<std::string>("errmsg");
+		LOG_INFO("the result errcode is %d",errcode);
+    	LOG_INFO("the result errmsg is %s",errmsg.c_str());
 	});
 }
 
@@ -119,6 +128,7 @@ int main()
 
 	/** test the rpc client and server*/
 	RpcServer rpc_server;
+	rpc_server.add_service(new HelloWorldImpl);
 	rpc_server.start(nullptr,12345);
 	rpc_client_test();
 

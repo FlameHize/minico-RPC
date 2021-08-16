@@ -79,7 +79,7 @@ void RpcServer::on_connection(minico::Socket* conn)
 
         /** 拿到收到的rpc的信息的长度 网络序需要转换为主机字节序*/
         rpc_recv_message_len = ntohl(rpc_header.len);
-        LOG_INFO("the receive rpc message len is %d",rpc_recv_message_len);
+        //LOG_INFO("the receive rpc message len is %d",rpc_recv_message_len);
 
         /** 对缓冲区进行初步处理 调整大小用于接收rpc实际数据信息,并接收信息*/
         buf.clear();
@@ -88,7 +88,7 @@ void RpcServer::on_connection(minico::Socket* conn)
 
         /** 将接收到的rpc请求从字节流转换为一个json对象*/
         std::string str_json_request(buf.begin(),buf.end());
-        LOG_INFO("the receive rpc meessage is %s",str_json_request.c_str());
+        //LOG_INFO("the receive rpc meessage is %s",str_json_request.c_str());
         
         /** 编码形成一个json对象*/
         request.ReadJson(str_json_request);
@@ -98,9 +98,9 @@ void RpcServer::on_connection(minico::Socket* conn)
 
         /** json->string->vector<char>buf*/
         std::string str_json_result = result.WriteJson();
-        LOG_INFO("the process rpc message result is %s",str_json_result.c_str());
+        //LOG_INFO("the process rpc message result is %s",str_json_result.c_str());
         rpc_send_message_len = str_json_result.length();
-        LOG_INFO("the process rpc message result len is %d",rpc_send_message_len);
+        //LOG_INFO("the process rpc message result len is %d",rpc_send_message_len);
 
         buf.clear();
         buf.resize(sizeof(RpcHeader) + rpc_send_message_len);
@@ -117,9 +117,9 @@ void RpcServer::on_connection(minico::Socket* conn)
         /** 进行拷贝,理论上是无问题的*/
         std::copy(str_json_result.begin(),str_json_result.end(),begin);
 
-        std::string rpc_server_send_result(buf.begin(),buf.end());
-        std::cout << "the rpc server send result string is" 
-            << rpc_server_send_result << std::endl;
+        //std::string rpc_server_send_result(buf.begin(),buf.end());
+        //std::cout << "the rpc server send result string is" 
+        //    << rpc_server_send_result << std::endl;
 
         /** 一次性将数据全部发送出去*/
         connection->send((void*)&buf[0],buf.size());
