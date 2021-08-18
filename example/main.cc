@@ -36,6 +36,7 @@ class HelloWorld : public Service
 	virtual void process(TinyJson& request,TinyJson& result) override
 	{
 		std::string method = request.Get<std::string>("method");
+		LOG_INFO("the request method is %s",method.c_str());
 		if(method.empty())
 		{
 			result["err"].Set(400);
@@ -70,7 +71,7 @@ class HelloWorldImpl : public HelloWorld
 	{
 		result["method"].Set("hello");
 		result["err"].Set(200);
-		result["errmsg"].Set("ok");
+		result["errmsg"].Set("the loop problem is solved");
 	}
 	virtual void world(TinyJson& request,TinyJson& result)
 	{
@@ -87,14 +88,12 @@ void tcp_client_test()
 		TcpClient client;
 		client.connect("127.0.0.1",12345);
 		char buf[1024];
-		for(int i = 0; i < 5;++i)
-		{
-			LOG_INFO("this is %d client send",i);
-			client.send("ping",4);
-			client.recv(buf,1024);
-			LOG_INFO(buf);
-		}
 
+		LOG_INFO("client send ping");
+		client.send("ping",4);
+		client.recv(buf,1024);
+		LOG_INFO("client recv %s",buf);
+		/** 问题初步分析是由于rpc客户端销毁造成一直发送0造成的*/
 	});
 }
 
@@ -104,7 +103,7 @@ void rpc_client_test()
 	minico::co_go([](){
 		RpcClient client;
 		client.connect("127.0.0.1",12345);
-		//client.ping();
+		client.ping();
 		TinyJson request;
 		TinyJson result;
 		request["service"].Set<std::string>("HelloWorld");
@@ -112,8 +111,10 @@ void rpc_client_test()
 		client.call(request,result);
 		int errcode = result.Get<int>("err");
 		std::string errmsg = result.Get<std::string>("errmsg");
+		LOG_INFO("--------------------------------");
 		LOG_INFO("the result errcode is %d",errcode);
     	LOG_INFO("the result errmsg is %s",errmsg.c_str());
+		LOG_INFO("--------------------------------");
 	});
 }
 
@@ -131,6 +132,23 @@ int main()
 	rpc_server.add_service(new HelloWorldImpl);
 	rpc_server.start(nullptr,12345);
 	rpc_client_test();
+
+	RpcClient client_test;
+	minico::co_go([&client_test](){
+		client_test.connect("127.0.0.1",12345);
+		client_test.ping();
+		TinyJson request;
+		TinyJson result;
+		request["service"].Set<std::string>("HelloWorld");
+		request["method"].Set<std::string>("world");
+		client_test.call(request,result);
+		int errcode = result.Get<int>("err");
+		std::string errmsg = result.Get<std::string>("errmsg");
+		LOG_INFO("--------------------------------");
+		LOG_INFO("the result errcode is %d",errcode);
+    	LOG_INFO("the result errmsg is %s",errmsg.c_str());
+		LOG_INFO("--------------------------------");
+	});
 
 	minico::sche_join();
 	std::cout << "end" << std::endl;

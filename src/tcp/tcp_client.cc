@@ -4,6 +4,7 @@
 void TcpClient::connect(const char* ip,int port)
 {
     /** 调用client_socket的连接函数*/
+    LOG_INFO("the client connection to the server");
     return m_client_socket->connect(ip,port);
 }
 

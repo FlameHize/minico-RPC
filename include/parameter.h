@@ -5,19 +5,19 @@ namespace minico
 {
 	namespace parameter
 	{
-		//Ð­³ÌÕ»´óÐ¡
+		//Ð­ï¿½ï¿½Õ»ï¿½ï¿½Ð¡
 		const static size_t coroutineStackSize = 8 * 1024;
 
-		//»ñÈ¡»îÔ¾µÄepoll_eventµÄÊý×éµÄ³õÊ¼³¤¶È
+		//ï¿½ï¿½È¡ï¿½ï¿½Ô¾ï¿½ï¿½epoll_eventï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 		static constexpr int epollerListFirstSize = 16;
 
-		//epoll_waitµÄ×èÈûÊ±³¤
-		static constexpr int epollTimeOutMs = 10000;
+		//epoll_waitï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+		static constexpr int epollTimeOutMs = -1;
 
-		//¼àÌý¶ÓÁÐµÄ³¤¶È
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ³ï¿½ï¿½ï¿½
 		constexpr static unsigned backLog = 4096;
 
-		//ÄÚ´æ³ØÃ»ÓÐ¿ÕÏÐÄÚ´æ¿éÊ±ÉêÇëmemPoolMallocObjCnt¸ö¶ÔÏó´óÐ¡µÄÄÚ´æ¿é
+		//ï¿½Ú´ï¿½ï¿½Ã»ï¿½Ð¿ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½memPoolMallocObjCntï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ú´ï¿½ï¿½
 		static constexpr size_t memPoolMallocObjCnt = 40;
 	}
 	

@@ -20,7 +20,7 @@ void RpcServer::process(TinyJson& request,TinyJson& result)
 {
     /** 解析客户端传入的服务key-value,获取对应的服务名称*/
     std::string service = request.Get<std::string>("service");
-    
+    LOG_INFO("the request service is %s",service.c_str());
     /** 说明用户配置了service的key-value*/
     if(!service.empty())
     {
@@ -28,6 +28,7 @@ void RpcServer::process(TinyJson& request,TinyJson& result)
         auto s = this->find_service(service);
         if(s)
         {
+            LOG_INFO("find the %s -service",s->name());
             /** 如果找到对应的服务类,就调用该服务对象进行业务逻辑处理*/
             s->process(request,result);
         }
@@ -57,10 +58,6 @@ void RpcServer::on_connection(minico::Socket* conn)
     ++m_conn_number;
 
     RpcHeader rpc_header;
-
-    TinyJson request;
-    TinyJson result;
-
     std::vector<char> buf;
 
     int rpc_recv_message_len = 0;
@@ -73,10 +70,18 @@ void RpcServer::on_connection(minico::Socket* conn)
      */
     while(true)
     {
+        /** for pre loop*/
+        TinyJson request;
+        TinyJson result;
+        
         /** 接收规定大小的rpc的头部信息到header中*/
         int received_len = connection->read(&rpc_header,sizeof(rpc_header));
         LOG_INFO("the receive rpc_header len is %d",received_len);
-
+        if(received_len == 0)
+        {
+            LOG_INFO("detect the client exit,server should break the connection");
+            break;
+        }
         /** 拿到收到的rpc的信息的长度 网络序需要转换为主机字节序*/
         rpc_recv_message_len = ntohl(rpc_header.len);
         //LOG_INFO("the receive rpc message len is %d",rpc_recv_message_len);
@@ -88,7 +93,7 @@ void RpcServer::on_connection(minico::Socket* conn)
 
         /** 将接收到的rpc请求从字节流转换为一个json对象*/
         std::string str_json_request(buf.begin(),buf.end());
-        //LOG_INFO("the receive rpc meessage is %s",str_json_request.c_str());
+        LOG_INFO("the receive rpc meessage is %s",str_json_request.c_str());
         
         /** 编码形成一个json对象*/
         request.ReadJson(str_json_request);
@@ -98,7 +103,7 @@ void RpcServer::on_connection(minico::Socket* conn)
 
         /** json->string->vector<char>buf*/
         std::string str_json_result = result.WriteJson();
-        //LOG_INFO("the process rpc message result is %s",str_json_result.c_str());
+        LOG_INFO("the process rpc message result is %s",str_json_result.c_str());
         rpc_send_message_len = str_json_result.length();
         //LOG_INFO("the process rpc message result len is %d",rpc_send_message_len);
 

@@ -1,5 +1,6 @@
 #include "../include/socket.h"
 #include "../include/scheduler.h"
+#include "../../include/logger.h"
 
 #include <netinet/in.h>
 #include <netinet/tcp.h>
@@ -11,7 +12,7 @@
 
 using namespace minico;
 
-///@RAII»úÖÆ
+///@RAIIï¿½ï¿½ï¿½ï¿½
 Socket::~Socket()
 {
 	--(*_pRef);
@@ -71,7 +72,7 @@ int Socket::bind(const char* ip,int port)
 	memset(&serv, 0, sizeof(struct sockaddr_in));
 	serv.sin_family = AF_INET;
 	serv.sin_port = htons(port);
-    /** ±íÊ¾±¾»úµÄËùÓĞip,Èç¹ûipÎªnull¾Í°ó¶¨±¾»úµÄËùÓĞipµØÖ·*/
+    /** ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ip,ï¿½ï¿½ï¿½ipÎªnullï¿½Í°ó¶¨±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ipï¿½ï¿½Ö·*/
     if(ip == nullptr)
     {
         serv.sin_addr.s_addr = htonl(INADDR_ANY);   
@@ -90,7 +91,7 @@ int Socket::listen()
 	return ret;
 }
 
-//½ÓÊÕÒ»¸öÁ¬½Ó,·µ»ØÒ»¸öĞÂÁ¬½ÓµÄSocket ÕâÀïÖ»ÊÇ·â×°ÁËÏµÍ³µ÷ÓÃ
+//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Socket ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ç·ï¿½×°ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½
 Socket Socket::accept_raw()
 {
 	int connfd = -1;
@@ -102,18 +103,18 @@ Socket Socket::accept_raw()
 		return Socket(connfd);
 	}
 
-	//accept³É¹¦±£´æÓÃ»§ip
+	//acceptï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ip
 	struct sockaddr_in* sock = (struct sockaddr_in*) & client;
-	int port = ntohs(sock->sin_port);          //linuxÉÏ´òÓ¡·½Ê½
+	int port = ntohs(sock->sin_port);          //linuxï¿½Ï´ï¿½Ó¡ï¿½ï¿½Ê½
 	struct in_addr in = sock->sin_addr;
-	char ip[INET_ADDRSTRLEN];   //INET_ADDRSTRLENÕâ¸öºêÏµÍ³Ä¬ÈÏ¶¨Òå 16
-	//³É¹¦µÄ»°´ËÊ±IPµØÖ·±£´æÔÚstr×Ö·û´®ÖĞ¡£
+	char ip[INET_ADDRSTRLEN];   //INET_ADDRSTRLENï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³Ä¬ï¿½Ï¶ï¿½ï¿½ï¿½ 16
+	//ï¿½É¹ï¿½ï¿½Ä»ï¿½ï¿½ï¿½Ê±IPï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½strï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½
 	inet_ntop(AF_INET, &in, ip, sizeof(ip));
 
 	return Socket(connfd, std::string(ip), port);
 }
 
-//·µ»ØÒ»¸öSocket
+//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Socket
 Socket Socket::accept()
 {
 	auto ret(accept_raw());
@@ -121,9 +122,9 @@ Socket Socket::accept()
 	{
 		return ret;
 	}
-	//Èç¹û²»ÄÜÓÃµÄ»°£¬¾ÍÖ±½ÓÄÃÔ­ÉúµÄsocket½øĞĞaccpetµ÷¶È
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½socketï¿½ï¿½ï¿½ï¿½accpetï¿½ï¿½ï¿½ï¿½
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
-	//ÇĞ»»»ØÀ´ÁË ÔÙÊÔÒ»ÊÔaccept
+	//ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½accept
 	auto con(accept_raw());
 	if(con.isUseful())
 	{
@@ -132,21 +133,27 @@ Socket Socket::accept()
 	return accept();
 }
 
-//´ÓsocketÖĞ¶ÁÊı¾İ
+//ï¿½ï¿½socketï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½
 ssize_t Socket::read(void* buf, size_t count)
 {
 	auto ret = ::read(_sockfd, buf, count);
+	LOG_INFO("the read bytes len is %d",ret);
+
 	if (ret >= 0)
 	{
 		return ret;
 	}
-	//Ê§°Ü·µ»Ø-1 EINTR£ºÊı¾İ¶ÁÈ¡Ç°£¬²Ù×÷±»ĞÅºÅÖĞ¶Ï ÄÇÃ´¾ÍÖØĞÂ¶ÁÈ¡
+	//Ê§ï¿½Ü·ï¿½ï¿½ï¿½-1 EINTRï¿½ï¿½ï¿½ï¿½ï¿½İ¶ï¿½È¡Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åºï¿½ï¿½Ğ¶ï¿½ ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½È¡
+	/** æ¥æ”¶ç¼“å­˜åŒºæ²¡æœ‰æ•°æ®ï¼Œåˆ™ä¼šè¿”å›-1*/
 	if(ret == -1 && errno == EINTR)
 	{
+		LOG_INFO("read has error");
 		return read(buf, count);
 	}
-	//·ÅÈëĞ­³Ìµ÷¶È µÈÓĞĞÅÏ¢ÁËÔÙ»ØÀ´¶Á Ö®ºó¾Íµ÷ÓÃÔ­ÉúµÄread¾Í¿ÉÒÔÁË
+	LOG_INFO("the coroutine yield");
+	//ï¿½ï¿½ï¿½ï¿½Ğ­ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ù»ï¿½ï¿½ï¿½ï¿½ï¿½ Ö®ï¿½ï¿½Íµï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½readï¿½Í¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
+	LOG_INFO("the coroutine wake");
 	return ::read(_sockfd, buf, count);
 }
 
@@ -165,20 +172,20 @@ void Socket::connect(const char* ip, int port)
 	if(ret == -1 && errno == EINTR){
 		return connect(ip, port);
 	}
-	//·ÅÈëĞ­³Ìµ÷¶ÈÖĞ£¬µÈµ½¿ÉĞ´ÁËÔÙĞ´
+	//ï¿½ï¿½ï¿½ï¿½Ğ­ï¿½Ìµï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½Èµï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½Ğ´
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLOUT);
 	return connect(ip, port);
 }
 
-//ÍùsocketÖĞĞ´Êı¾İ
+//ï¿½ï¿½socketï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½
 ssize_t Socket::send(const void* buf, size_t count)
 {
-	//ºöÂÔSIGPIPEĞÅºÅ
+	//ï¿½ï¿½ï¿½ï¿½SIGPIPEï¿½Åºï¿½
 	size_t sendIdx = ::send(_sockfd, buf, count, MSG_NOSIGNAL);
 	if (sendIdx >= count){
 		return count;
 	}
-	//Ğ­³Ìµ÷¶È Ò»Ö±Ğ´ Ö±µ½Ğ´Íê
+	//Ğ­ï¿½Ìµï¿½ï¿½ï¿½ Ò»Ö±Ğ´ Ö±ï¿½ï¿½Ğ´ï¿½ï¿½
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLOUT);
 	return send((char *)buf + sendIdx, count - sendIdx);
 }
@@ -224,18 +231,18 @@ int Socket::setKeepAlive(bool on)
 	return ret;
 }
 
-//ÉèÖÃsocketÎª·Ç×èÈûµÄ
+//ï¿½ï¿½ï¿½ï¿½socketÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int Socket::setNonBolckSocket()
 {
 	auto flags = fcntl(_sockfd, F_GETFL, 0);
-	int ret = fcntl(_sockfd, F_SETFL, flags | O_NONBLOCK);   //ÉèÖÃ³É·Ç×èÈûÄ£Ê½
+	int ret = fcntl(_sockfd, F_SETFL, flags | O_NONBLOCK);   //ï¿½ï¿½ï¿½Ã³É·ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 	return ret;
 }
 
-//ÉèÖÃsocketÎª×èÈûµÄ
+//ï¿½ï¿½ï¿½ï¿½socketÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int Socket::setBlockSocket()
 {
 	auto flags = fcntl(_sockfd, F_GETFL, 0);
-	int ret = fcntl(_sockfd, F_SETFL, flags & ~O_NONBLOCK);    //ÉèÖÃ³É×èÈûÄ£Ê½£»
+	int ret = fcntl(_sockfd, F_SETFL, flags & ~O_NONBLOCK);    //ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½
 	return ret;
 }

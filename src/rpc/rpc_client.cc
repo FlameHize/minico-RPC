@@ -56,6 +56,7 @@ void RpcClient::call(TinyJson& request,TinyJson& result)
 
 void RpcClient::ping()
 {
+    LOG_INFO("enter the client ping");
     TinyJson request;
     TinyJson result;
     request["service"].Set("ping");
@@ -67,6 +68,9 @@ void RpcClient::ping()
     //     << ping_result << std::endl;
     int errcode = result.Get<int>("err");
     std::string errmsg = result.Get<std::string>("errmsg");
+    LOG_INFO("-----------------------------");
     LOG_INFO("the ping errcode is %d",errcode);
     LOG_INFO("the ping errmsg is %s",errmsg.c_str());
+    LOG_INFO("------------------------------");
+    LOG_INFO("leave the clent ping");
 }

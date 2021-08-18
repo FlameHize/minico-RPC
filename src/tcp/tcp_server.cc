@@ -5,7 +5,6 @@ std::function<void(minico::Socket*)> default_connection(
     [](minico::Socket* co_socket)
     {
         LOG_INFO("add one client connection");
-        
         /** 对这个改造的socket进行生命其管理*/
         std::unique_ptr<minico::Socket> connect_socket(co_socket);
         
@@ -14,19 +13,26 @@ std::function<void(minico::Socket*)> default_connection(
         buf.resize(2048);
         while(true)
         {
+            LOG_INFO("--------start one read-write process loop------------");
             /** readnum是实际上读到的数据*/
             auto readNum = connect_socket->read((void*)&(buf[0]), buf.size());	//这里也会发生协程切换(切回去是运行loop)
-            std::string ok = "HTTP/1.0 200 OK\r\nServer: minico/0.1.0\r\nContent-Type: text/html\r\n\r\n";
-            if(readNum < 0)
+            //std::string ok = "HTTP/1.0 200 OK\r\nServer: minico/0.1.0\r\nContent-Type: text/html\r\n\r\n";
+            if(readNum <= 0)
             {
+                /** read = 0 exit*/
                 break;
             }
-            connect_socket->send(ok.c_str(), ok.size());
+            //connect_socket->send(ok.c_str(), ok.size());
             connect_socket->send((void*)&(buf[0]), readNum);
-            if(readNum < (int)buf.size())
-            {
-                break;
-            }
+            /** 
+             * 现在的情况是，rpc客户端对应的这个链接循环，做完所有的任务就挂掉了，需要退出
+             * 因此下面的退出处理是必须的
+             * */
+            //if(readNum < (int)buf.size())
+            //{
+            //    break;
+            //}
+            LOG_INFO("--------finish one read-write process loop------------");
         }
     }
 );
@@ -119,12 +125,15 @@ void TcpServer::start_multi(const char* ip,int port)
  */
 void TcpServer::server_loop()
 {
+    LOG_INFO("-------------------------");
     LOG_INFO("start run the server loop");
+    LOG_INFO("-------------------------");
     while(true)
     {
         /** conn即可以用来进行fd通信*/
+        LOG_INFO("block in server_loop,has no new client accept");
         minico::Socket* conn = new minico::Socket(_listen_fd->accept());
-        LOG_INFO("add one tcpclient socket fd %d",conn->fd());
+        LOG_INFO("unblock,the server add a new tcpclient connection,the connect fd is %d",conn->fd());
         conn->setTcpNoDelay(true);
         /** 
          *运行绑定的用户工作函数
