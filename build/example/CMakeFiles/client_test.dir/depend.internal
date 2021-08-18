@@ -16,7 +16,8 @@ example/CMakeFiles/client_test.dir/test_client.cc.o
  /home/zhuguangxu/product/minico-rpc/include/processor.h
  /home/zhuguangxu/product/minico-rpc/include/processor_selector.h
  /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client.h
- /home/zhuguangxu/product/minico-rpc/include/rpc/service.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client_stub.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_header.h
  /home/zhuguangxu/product/minico-rpc/include/scheduler.h
  /home/zhuguangxu/product/minico-rpc/include/socket.h
  /home/zhuguangxu/product/minico-rpc/include/spinlock.h

@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../../include/tcp/tcp_client.h"
-#include "service.h"
+#include "../../include/rpc/rpc_client_stub.h"
 #include "../../include/json.h"
 
 /**
@@ -12,21 +11,21 @@ class RpcClient
   public:
     DISALLOW_COPY_MOVE_AND_ASSIGN(RpcClient);
 
-    RpcClient() : m_tcp_client(new TcpClient())
+    RpcClient() : m_rpc_client_stub(new RpcClientStub())
     {
-      LOG_INFO("rpc_client constructor a tcp_client");
+      LOG_INFO("rpc_client constructor a rpc-client-stub");
     }
-
+  
     ~RpcClient()
     {
-      LOG_INFO("rpc_client destructor a tcp_client");
-      delete m_tcp_client;
-      m_tcp_client = nullptr;
+      delete m_rpc_client_stub;
+      m_rpc_client_stub = nullptr;
+      LOG_INFO("rpc_client destructor a rpc-client-stub");
     }
 
     void connect(const char* ip,int port)
     {
-      return m_tcp_client->connect(ip,port);
+      return m_rpc_client_stub->connect(ip,port);
     }
     /**
      * @brief 进行一次rpc请求，从result形参中直接得到结果
@@ -39,10 +38,10 @@ class RpcClient
     /** close the rpcclient function*/
     int close()
     {
-      return m_tcp_client->disconnect();
+      return m_rpc_client_stub->close();
     }
   
   private:
-    TcpClient* m_tcp_client;
-    std::vector<char> buf;
+    RpcClientStub* m_rpc_client_stub;
+
 };

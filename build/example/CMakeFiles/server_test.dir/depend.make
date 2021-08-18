@@ -14,7 +14,9 @@ example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/objpool.h
 example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/parameter.h
 example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/processor.h
 example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/processor_selector.h
+example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/rpc/rpc_header.h
 example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/rpc/rpc_server.h
+example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/rpc/rpc_server_stub.h
 example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/rpc/service.h
 example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/scheduler.h
 example/CMakeFiles/server_test.dir/test_server.cc.o: ../include/socket.h

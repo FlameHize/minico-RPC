@@ -10,7 +10,7 @@ void TcpClient::connect(const char* ip,int port)
 
 int TcpClient::disconnect()
 {
-    /** 关闭写 如果读到了0 英国就关掉*/
+    /** 关闭写 如果读到了0 就关掉*/
     return m_client_socket->shutdownWrite();
 }
 

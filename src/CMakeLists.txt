@@ -14,6 +14,8 @@ add_library(minico-rpc SHARED
     ${PROJECT_SOURCE_DIR}/src/tcp/tcp_client.cc
     ${PROJECT_SOURCE_DIR}/src/tcp/tcp_server.cc
     ${PROJECT_SOURCE_DIR}/src/rpc/rpc_client.cc
+    ${PROJECT_SOURCE_DIR}/src/rpc/rpc_client_stub.cc
     ${PROJECT_SOURCE_DIR}/src/rpc/rpc_server.cc
+    ${PROJECT_SOURCE_DIR}/src/rpc/rpc_server_stub.cc
     ${PROJECT_SOURCE_DIR}/src/rpc/rpc_header.cc
     )

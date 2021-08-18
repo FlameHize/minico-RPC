@@ -3,17 +3,26 @@
 
 void RpcServer::start(const char* ip,int port)
 {
-    /** 注册自定义的连接回调函数,这里需要注意占位符问题*/
     std::function<void(minico::Socket*)> on_connection = 
         std::bind(&RpcServer::on_connection,this,std::placeholders::_1);
-
+    
     /** register the connection callback*/
-    m_tcp_server->register_connection(on_connection);
-    LOG_INFO("register the serverimpl connection");
+    m_rpc_server_stub->register_connection(on_connection);
+    LOG_INFO("register the rpc-server-stub connection callback");
 
-    /** 开启tcp服务器运行*/
-    m_tcp_server->start(ip,port); 
-    LOG_INFO("rpcserver start the tcpserver run");
+    m_rpc_server_stub->start(ip,port);
+}
+
+void RpcServer::start_multi(const char* ip,int port)
+{
+    std::function<void(minico::Socket*)> on_connection = 
+        std::bind(&RpcServer::on_connection,this,std::placeholders::_1);
+    
+    /** register the connection callback*/
+    m_rpc_server_stub->register_connection(on_connection);
+    LOG_INFO("register the rpc-server-stub connection callback");
+
+    m_rpc_server_stub->start_multi(ip,port);
 }
 
 void RpcServer::process(TinyJson& request,TinyJson& result)
@@ -46,23 +55,17 @@ void RpcServer::process(TinyJson& request,TinyJson& result)
     return;
 }
 
-/**
- * @brief 实际需要实现的连接回调函数 需要注入到基础的tcp服务器中
-*/
 void RpcServer::on_connection(minico::Socket* conn)
 {
     /** 进行conn-fd的生命期管理*/
     std::unique_ptr<minico::Socket> connection(conn);
 
     /** add one client connection*/
-    ++m_conn_number;
 
     RpcHeader rpc_header;
     std::vector<char> buf;
 
     int rpc_recv_message_len = 0;
-    int rpc_send_message_len = 0;
-
     /** 
      * 收到了客户端发出的rpc请求,会做出如下处理 先不考虑错误处理
      * rpc请求会先收到一个头部信息,用于后续的主体信息流的截取
@@ -70,16 +73,19 @@ void RpcServer::on_connection(minico::Socket* conn)
      */
     while(true)
     {
-        /** for pre loop*/
         TinyJson request;
         TinyJson result;
-        
+
         /** 接收规定大小的rpc的头部信息到header中*/
-        int received_len = connection->read(&rpc_header,sizeof(rpc_header));
-        LOG_INFO("the receive rpc_header len is %d",received_len);
-        if(received_len == 0)
+        int rpc_request_message_len = 
+            connection->read(&rpc_header,sizeof(rpc_header));
+        //LOG_INFO("the rpc-server-stub received rpc_header len is %d",
+        //    rpc_request_message_len);
+
+        /** for client send exit and process*/
+        if(rpc_request_message_len == 0)
         {
-            LOG_INFO("detect the client exit,server should break the connection");
+            LOG_INFO("detect a client exit,rpc-server-stub should break the connection");
             break;
         }
         /** 拿到收到的rpc的信息的长度 网络序需要转换为主机字节序*/
@@ -91,44 +97,17 @@ void RpcServer::on_connection(minico::Socket* conn)
         buf.resize(rpc_recv_message_len); 
         connection->read((void*)&buf[0],rpc_recv_message_len);
 
-        /** 将接收到的rpc请求从字节流转换为一个json对象*/
-        std::string str_json_request(buf.begin(),buf.end());
-        LOG_INFO("the receive rpc meessage is %s",str_json_request.c_str());
-        
-        /** 编码形成一个json对象*/
-        request.ReadJson(str_json_request);
+        /** 将接收到的clent-rpc请求从字节流转换为一个json对象*/
+        m_rpc_server_stub->encode(buf,request);
 
-        /** rpc信息接收完毕,以下是处理逻辑*/
-        this->process(request,result);
+        /** 交给上层rpc业务服务器的业务处理逻辑*/
+        process(request,result);
 
-        /** json->string->vector<char>buf*/
-        std::string str_json_result = result.WriteJson();
-        LOG_INFO("the process rpc message result is %s",str_json_result.c_str());
-        rpc_send_message_len = str_json_result.length();
-        //LOG_INFO("the process rpc message result len is %d",rpc_send_message_len);
-
-        buf.clear();
-        buf.resize(sizeof(RpcHeader) + rpc_send_message_len);
-
-        /** 在发送缓冲区中填入rpc头部信息*/
-        set_rpc_header((void*)&buf[0],rpc_send_message_len);
-
-        /** 采用vector::copy来进行数据的复制 这里需要进行测试*/
-        std::vector<char>::iterator begin = buf.begin();
-        for(unsigned int i = 0;i < sizeof(RpcHeader);++i)
-        {
-            ++begin;
-        }
-        /** 进行拷贝,理论上是无问题的*/
-        std::copy(str_json_result.begin(),str_json_result.end(),begin);
-
-        //std::string rpc_server_send_result(buf.begin(),buf.end());
-        //std::cout << "the rpc server send result string is" 
-        //    << rpc_server_send_result << std::endl;
+        /** 把将处理后得到的json转换成字节流*/
+        m_rpc_server_stub->decode(buf,result);
 
         /** 一次性将数据全部发送出去*/
         connection->send((void*)&buf[0],buf.size());
     }
-    /** client exit */
-    --m_conn_number;
 }
+

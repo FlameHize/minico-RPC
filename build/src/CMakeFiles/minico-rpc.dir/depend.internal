@@ -108,8 +108,8 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o
  /home/zhuguangxu/product/minico-rpc/include/processor.h
  /home/zhuguangxu/product/minico-rpc/include/processor_selector.h
  /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client_stub.h
  /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_header.h
- /home/zhuguangxu/product/minico-rpc/include/rpc/service.h
  /home/zhuguangxu/product/minico-rpc/include/scheduler.h
  /home/zhuguangxu/product/minico-rpc/include/socket.h
  /home/zhuguangxu/product/minico-rpc/include/spinlock.h
@@ -117,6 +117,28 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o
  /home/zhuguangxu/product/minico-rpc/include/timer.h
  /home/zhuguangxu/product/minico-rpc/include/utils.h
  /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_client.cc
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o
+ /home/zhuguangxu/product/minico-rpc/include/context.h
+ /home/zhuguangxu/product/minico-rpc/include/coroutine.h
+ /home/zhuguangxu/product/minico-rpc/include/epoller.h
+ /home/zhuguangxu/product/minico-rpc/include/json.h
+ /home/zhuguangxu/product/minico-rpc/include/logger.h
+ /home/zhuguangxu/product/minico-rpc/include/mempool.h
+ /home/zhuguangxu/product/minico-rpc/include/minico_api.h
+ /home/zhuguangxu/product/minico-rpc/include/mstime.h
+ /home/zhuguangxu/product/minico-rpc/include/objpool.h
+ /home/zhuguangxu/product/minico-rpc/include/parameter.h
+ /home/zhuguangxu/product/minico-rpc/include/processor.h
+ /home/zhuguangxu/product/minico-rpc/include/processor_selector.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client_stub.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_header.h
+ /home/zhuguangxu/product/minico-rpc/include/scheduler.h
+ /home/zhuguangxu/product/minico-rpc/include/socket.h
+ /home/zhuguangxu/product/minico-rpc/include/spinlock.h
+ /home/zhuguangxu/product/minico-rpc/include/tcp/tcp_client.h
+ /home/zhuguangxu/product/minico-rpc/include/timer.h
+ /home/zhuguangxu/product/minico-rpc/include/utils.h
+ /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_client_stub.cc
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o
  /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_header.h
  /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_header.cc
@@ -135,6 +157,7 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o
  /home/zhuguangxu/product/minico-rpc/include/processor_selector.h
  /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_header.h
  /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_server.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_server_stub.h
  /home/zhuguangxu/product/minico-rpc/include/rpc/service.h
  /home/zhuguangxu/product/minico-rpc/include/scheduler.h
  /home/zhuguangxu/product/minico-rpc/include/socket.h
@@ -143,6 +166,28 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o
  /home/zhuguangxu/product/minico-rpc/include/timer.h
  /home/zhuguangxu/product/minico-rpc/include/utils.h
  /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_server.cc
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o
+ /home/zhuguangxu/product/minico-rpc/include/context.h
+ /home/zhuguangxu/product/minico-rpc/include/coroutine.h
+ /home/zhuguangxu/product/minico-rpc/include/epoller.h
+ /home/zhuguangxu/product/minico-rpc/include/json.h
+ /home/zhuguangxu/product/minico-rpc/include/logger.h
+ /home/zhuguangxu/product/minico-rpc/include/mempool.h
+ /home/zhuguangxu/product/minico-rpc/include/minico_api.h
+ /home/zhuguangxu/product/minico-rpc/include/mstime.h
+ /home/zhuguangxu/product/minico-rpc/include/objpool.h
+ /home/zhuguangxu/product/minico-rpc/include/parameter.h
+ /home/zhuguangxu/product/minico-rpc/include/processor.h
+ /home/zhuguangxu/product/minico-rpc/include/processor_selector.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_header.h
+ /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_server_stub.h
+ /home/zhuguangxu/product/minico-rpc/include/scheduler.h
+ /home/zhuguangxu/product/minico-rpc/include/socket.h
+ /home/zhuguangxu/product/minico-rpc/include/spinlock.h
+ /home/zhuguangxu/product/minico-rpc/include/tcp/tcp_server.h
+ /home/zhuguangxu/product/minico-rpc/include/timer.h
+ /home/zhuguangxu/product/minico-rpc/include/utils.h
+ /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_server_stub.cc
 src/CMakeFiles/minico-rpc.dir/scheduler.cc.o
  /home/zhuguangxu/product/minico-rpc/include/context.h
  /home/zhuguangxu/product/minico-rpc/include/coroutine.h

@@ -15,7 +15,8 @@ example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/parameter.h
 example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/processor.h
 example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/processor_selector.h
 example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/rpc/rpc_client.h
-example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/rpc/service.h
+example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/rpc/rpc_client_stub.h
+example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/rpc/rpc_header.h
 example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/scheduler.h
 example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/socket.h
 example/CMakeFiles/client_test.dir/test_client.cc.o: ../include/spinlock.h

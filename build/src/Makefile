@@ -395,6 +395,33 @@ rpc/rpc_client.cc.s:
 	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.s
 .PHONY : rpc/rpc_client.cc.s
 
+rpc/rpc_client_stub.o: rpc/rpc_client_stub.cc.o
+
+.PHONY : rpc/rpc_client_stub.o
+
+# target to build an object file
+rpc/rpc_client_stub.cc.o:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o
+.PHONY : rpc/rpc_client_stub.cc.o
+
+rpc/rpc_client_stub.i: rpc/rpc_client_stub.cc.i
+
+.PHONY : rpc/rpc_client_stub.i
+
+# target to preprocess a source file
+rpc/rpc_client_stub.cc.i:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.i
+.PHONY : rpc/rpc_client_stub.cc.i
+
+rpc/rpc_client_stub.s: rpc/rpc_client_stub.cc.s
+
+.PHONY : rpc/rpc_client_stub.s
+
+# target to generate assembly for a file
+rpc/rpc_client_stub.cc.s:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.s
+.PHONY : rpc/rpc_client_stub.cc.s
+
 rpc/rpc_header.o: rpc/rpc_header.cc.o
 
 .PHONY : rpc/rpc_header.o
@@ -448,6 +475,33 @@ rpc/rpc_server.s: rpc/rpc_server.cc.s
 rpc/rpc_server.cc.s:
 	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.s
 .PHONY : rpc/rpc_server.cc.s
+
+rpc/rpc_server_stub.o: rpc/rpc_server_stub.cc.o
+
+.PHONY : rpc/rpc_server_stub.o
+
+# target to build an object file
+rpc/rpc_server_stub.cc.o:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o
+.PHONY : rpc/rpc_server_stub.cc.o
+
+rpc/rpc_server_stub.i: rpc/rpc_server_stub.cc.i
+
+.PHONY : rpc/rpc_server_stub.i
+
+# target to preprocess a source file
+rpc/rpc_server_stub.cc.i:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.i
+.PHONY : rpc/rpc_server_stub.cc.i
+
+rpc/rpc_server_stub.s: rpc/rpc_server_stub.cc.s
+
+.PHONY : rpc/rpc_server_stub.s
+
+# target to generate assembly for a file
+rpc/rpc_server_stub.cc.s:
+	cd /home/zhuguangxu/product/minico-rpc/build && $(MAKE) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.s
+.PHONY : rpc/rpc_server_stub.cc.s
 
 scheduler.o: scheduler.cc.o
 
@@ -623,12 +677,18 @@ help:
 	@echo "... rpc/rpc_client.o"
 	@echo "... rpc/rpc_client.i"
 	@echo "... rpc/rpc_client.s"
+	@echo "... rpc/rpc_client_stub.o"
+	@echo "... rpc/rpc_client_stub.i"
+	@echo "... rpc/rpc_client_stub.s"
 	@echo "... rpc/rpc_header.o"
 	@echo "... rpc/rpc_header.i"
 	@echo "... rpc/rpc_header.s"
 	@echo "... rpc/rpc_server.o"
 	@echo "... rpc/rpc_server.i"
 	@echo "... rpc/rpc_server.s"
+	@echo "... rpc/rpc_server_stub.o"
+	@echo "... rpc/rpc_server_stub.i"
+	@echo "... rpc/rpc_server_stub.s"
 	@echo "... scheduler.o"
 	@echo "... scheduler.i"
 	@echo "... scheduler.s"

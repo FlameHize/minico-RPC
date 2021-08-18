@@ -113,16 +113,24 @@ vector
 -
 
 /home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client.h
-../../include/tcp/tcp_client.h
-/home/zhuguangxu/product/minico-rpc/include/tcp/tcp_client.h
-service.h
-/home/zhuguangxu/product/minico-rpc/include/rpc/service.h
+../../include/rpc/rpc_client_stub.h
+/home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client_stub.h
 ../../include/json.h
 /home/zhuguangxu/product/minico-rpc/include/json.h
 
-/home/zhuguangxu/product/minico-rpc/include/rpc/service.h
+/home/zhuguangxu/product/minico-rpc/include/rpc/rpc_client_stub.h
+../../include/rpc/rpc_header.h
+/home/zhuguangxu/product/minico-rpc/include/rpc/rpc_header.h
+../../include/tcp/tcp_client.h
+/home/zhuguangxu/product/minico-rpc/include/tcp/tcp_client.h
 ../../include/json.h
 /home/zhuguangxu/product/minico-rpc/include/json.h
+
+/home/zhuguangxu/product/minico-rpc/include/rpc/rpc_header.h
+arpa/inet.h
+-
+stdint.h
+-
 
 /home/zhuguangxu/product/minico-rpc/include/scheduler.h
 vector

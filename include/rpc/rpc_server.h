@@ -3,6 +3,7 @@
 #include <unordered_map>
 
 #include "../../include/tcp/tcp_server.h"
+#include "../../include/rpc/rpc_server_stub.h"
 #include "../../include/json.h"
 
 #include "service.h"
@@ -15,24 +16,26 @@ class RpcServer
   public:
     DISALLOW_COPY_MOVE_AND_ASSIGN(RpcServer);
 
-    RpcServer() : m_tcp_server(new TcpServer()),m_conn_number(0)
+    RpcServer() : m_rpc_server_stub(new RpcServerStub())
     {
-      LOG_INFO("rpcserver constructor the tcpserver");
+      LOG_INFO("rpcserver constructor the rpc-server-stub");
       /** add a ping service*/
       add_service(new Ping);
-      LOG_INFO("already add a service ping");
+      LOG_INFO("add a service ping");
     }
 
     ~RpcServer(){
       LOG_INFO("rpcserver destructor the tcpserver");
-      delete m_tcp_server;
-      m_tcp_server = nullptr;
+      delete m_rpc_server_stub;
+      m_rpc_server_stub = nullptr;
     };
 
     /**
      * 开启rpc服务器的运行
      */
     void start(const char* ip,int port);
+    
+    void start_multi(const char* ip,int port);
 
     /** 
      * 向服务器中添加一种服务,一种服务可以有多个接口方法 
@@ -60,13 +63,12 @@ class RpcServer
     void process(TinyJson& request,TinyJson& result);
 
   private:
-    /** 实际rpc服务器接收客户端连接时的回调函数**/
+    /** connection callback*/
     void on_connection(minico::Socket* conn);
 
     /** tcp server handle*/
-    TcpServer* m_tcp_server;
+    RpcServerStub* m_rpc_server_stub;
 
-    /** 保存的客户端的连接数*/
     std::atomic<int> m_conn_number;
 
     /** 保存的服务的列表*/

@@ -252,9 +252,22 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.s"
 	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_client.cc -o CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.s
 
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../src/rpc/rpc_client_stub.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o"
+	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o -c /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_client_stub.cc
+
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.i"
+	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_client_stub.cc > CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.i
+
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.s"
+	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_client_stub.cc -o CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.s
+
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../src/rpc/rpc_server.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o"
 	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o -c /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_server.cc
 
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.i: cmake_force
@@ -265,9 +278,22 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.s"
 	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_server.cc -o CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.s
 
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../src/rpc/rpc_server_stub.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o"
+	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o -c /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_server_stub.cc
+
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.i"
+	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_server_stub.cc > CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.i
+
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.s"
+	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_server_stub.cc -o CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.s
+
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o: ../src/rpc/rpc_header.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o"
 	cd /home/zhuguangxu/product/minico-rpc/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o -c /home/zhuguangxu/product/minico-rpc/src/rpc/rpc_header.cc
 
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.i: cmake_force
@@ -295,7 +321,9 @@ minico__rpc_OBJECTS = \
 "CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o" \
 "CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o" \
 "CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o" \
+"CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o" \
 "CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o" \
+"CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o" \
 "CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o"
 
 # External object files for target minico-rpc
@@ -316,11 +344,13 @@ minico__rpc_EXTERNAL_OBJECTS =
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o
+../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o
+../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/build.make
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX shared library ../../lib/libminico-rpc.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhuguangxu/product/minico-rpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX shared library ../../lib/libminico-rpc.so"
 	cd /home/zhuguangxu/product/minico-rpc/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minico-rpc.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

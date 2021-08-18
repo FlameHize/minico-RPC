@@ -107,8 +107,8 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/parameter.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/processor.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/processor_selector.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/rpc/rpc_client.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/rpc/rpc_client_stub.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/rpc/rpc_header.h
-src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/rpc/service.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/scheduler.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/socket.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/spinlock.h
@@ -116,6 +116,28 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/tcp/tcp_client.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/timer.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../include/utils.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../src/rpc/rpc_client.cc
+
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/context.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/coroutine.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/epoller.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/json.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/logger.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/mempool.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/minico_api.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/mstime.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/objpool.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/parameter.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/processor.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/processor_selector.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/rpc/rpc_client_stub.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/rpc/rpc_header.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/scheduler.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/socket.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/spinlock.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/tcp/tcp_client.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/timer.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../include/utils.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../src/rpc/rpc_client_stub.cc
 
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o: ../include/rpc/rpc_header.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o: ../src/rpc/rpc_header.cc
@@ -134,6 +156,7 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/processor.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/processor_selector.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/rpc/rpc_header.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/rpc/rpc_server.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/rpc/rpc_server_stub.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/rpc/service.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/scheduler.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/socket.h
@@ -142,6 +165,28 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/tcp/tcp_server.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/timer.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../include/utils.h
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../src/rpc/rpc_server.cc
+
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/context.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/coroutine.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/epoller.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/json.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/logger.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/mempool.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/minico_api.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/mstime.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/objpool.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/parameter.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/processor.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/processor_selector.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/rpc/rpc_header.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/rpc/rpc_server_stub.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/scheduler.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/socket.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/spinlock.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/tcp/tcp_server.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/timer.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../include/utils.h
+src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../src/rpc/rpc_server_stub.cc
 
 src/CMakeFiles/minico-rpc.dir/scheduler.cc.o: ../include/context.h
 src/CMakeFiles/minico-rpc.dir/scheduler.cc.o: ../include/coroutine.h

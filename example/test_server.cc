@@ -72,7 +72,9 @@ class HelloWorldImpl : public HelloWorld
 	}
 };
 
-
+/**
+ * need server-stub and client-stub
+*/
 int main()
 {
     LOG_INFO("test: start the server");
@@ -83,7 +85,7 @@ int main()
 	/** test the rpc client and server*/
 	RpcServer rpc_server;
 	rpc_server.add_service(new HelloWorldImpl);
-	rpc_server.start(nullptr,12345);
+	rpc_server.start_multi(nullptr,12345);
 
 	minico::sche_join();
 	std::cout << "end" << std::endl;
