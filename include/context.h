@@ -3,7 +3,7 @@
 #include "parameter.h"
 #include <ucontext.h>
 /**
- * ·â×°ÁËucontextÉÏÏÂÎÄÇÐ»»µÄÒ»Ð©²Ù×÷
+ * å°è£…äº†ucontextä¸Šä¸‹æ–‡åˆ‡æ¢çš„ä¸€äº›æ“ä½œ
  */
 namespace minico
 {
@@ -12,7 +12,7 @@ namespace minico
 	class Context
 	{
 	public:
-		Context(size_t stackSize);	//Ö¸¶¨ÁËÐ­³ÌµÄÕ»´óÐ¡
+		Context(size_t stackSize);	
 		~Context();
 
 		Context(const Context& otherCtx) 
@@ -25,31 +25,33 @@ namespace minico
 
 		Context& operator=(const Context& otherCtx) = delete;
 
-		//ÓÃº¯ÊýÖ¸ÕëÉèÖÃµ±Ç°contextµÄÉÏÏÂÎÄÈë¿Ú
+		/** ç”¨å‡½æ•°æŒ‡é’ˆè®¾ç½®å½“å‰contextçš„ä¸Šä¸‹æ–‡å…¥å£*/
 		void makeContext(void (*func)(), Processor*, Context*);
 
-		//Ö±½ÓÓÃµ±Ç°³ÌÐò×´Ì¬ÉèÖÃµ±Ç°contextµÄÉÏÏÂÎÄ
+		/** ç›´æŽ¥ç”¨å½“å‰ç¨‹åºçŠ¶æ€è®¾ç½®å½“å‰contextçš„ä¸Šä¸‹æ–‡*/
 		void makeCurContext();
 
-		//½«µ±Ç°ÉÏÏÂÎÄ±£´æµ½oldCtxÖÐ£¬È»ºóÇÐ»»µ½µ±Ç°ÉÏÏÂÎÄ£¬ÈôoldCtxÎª¿Õ£¬ÔòÖ±½ÓÔËÐÐ
+		/** å°†å½“å‰ä¸Šä¸‹æ–‡ä¿å­˜åˆ°oldCtxä¸­ï¼Œç„¶åŽåˆ‡æ¢åˆ°å½“å‰ä¸Šä¸‹æ–‡ï¼Œè‹¥oldCtxä¸ºç©ºï¼Œåˆ™ç›´æŽ¥è¿è¡Œ*/
 		void swapToMe(Context* pOldCtx);
 
-		//»ñÈ¡µ±Ç°ÉÏÏÂÎÄµÄucontext_tÖ¸Õë
+		/** èŽ·å–å½“å‰ä¸Šä¸‹æ–‡çš„ucontext_tæŒ‡é’ˆ*/
 		inline ucontext_t* getUCtx() { return &ctx_; };
 
 	private:
-
-		ucontext_t ctx_;   //ÉÏÏÂÎÄ½á¹¹
-
-		void* pStack_;            //Õ»Ö¸Õë
-
-		size_t stackSize_;        //Õ»´óÐ¡
+		/** ä¸Šä¸‹æ–‡ç»“æž„*/
+		ucontext_t ctx_;   	
+		
+		/** æ ˆæŒ‡é’ˆ*/
+		void* pStack_;        
+		
+		/** åç¨‹æ ˆå¤§å°*/
+		size_t stackSize_;        
 
 	};
 
 }
 /**
- * @ucontext_t GNUÌá¹©µÄÒ»×é´´½¨¡¢±£´æ¡¢ÇÐ»»ÓÃ»§Ì¬Ö´ÐÐÉÏÏÂÎÄµÄAPI,Ê¹µÃÓÃ»§ÔÚ³ÌÐòÖÐ±£´æµ±Ç°µÄÉÏÏÂÎÄ³ÉÎª¿ÉÄÜ,¿ÉÒÔÀûÓÃ´ËÀ´ÊµÏÖÓÃ»§Ì¬Ïß³Ì,¼´Ð­³Ì
+ * @ucontext_t GNUæä¾›çš„ä¸€ç»„åˆ›å»ºã€ä¿å­˜ã€åˆ‡æ¢ç”¨æˆ·æ€æ‰§è¡Œä¸Šä¸‹æ–‡çš„API,ä½¿å¾—ç”¨æˆ·åœ¨ç¨‹åºä¸­ä¿å­˜å½“å‰çš„ä¸Šä¸‹æ–‡æˆä¸ºå¯èƒ½,å¯ä»¥åˆ©ç”¨æ­¤æ¥å®žçŽ°ç”¨æˆ·æ€çº¿ç¨‹,å³åç¨‹
  * @typedef struct ucontext_t
  * {
  * 	struct ucontext_t* uc_link;
@@ -57,31 +59,31 @@ namespace minico
  * 	stack_t uc_stack;
  * 	mcontext_t uc_mcontext;
  * }
- * @uc_link:µ±Ç°contextÖ´ÐÐ½áÊøºóÒªÖ´ÐÐµÄÏÂÒ»¸öcontext,Èç¹ûuc_linkÎª¿Õ,Ö´ÐÐÍêµ±Ç°contextÖ®ºóÍË³ö³ÌÐò
- * @uc_sigmask:Ö´ÐÐµ±Ç°ÉÏÏÂÎÄ¹ý³ÌÖÐÐèÒªÆÁ±ÎµÄÐÅºÅÁÐ±í,¼´ÐÅºÅÑÚÂë
- * @uc_stack:µ±Ç°contextÔËÐÐµÄÕ»ÐÅÏ¢
- * @uc_mcontext:±£´æ¾ßÌåµÄ³ÌÐòÖ´ÐÐÉÏÏÂÎÄ,ÈçPCÖµ¡¢¶ÑÕ»Ö¸ÕëÒÔ¼°¼Ä´æÆ÷µÈÐÅÏ¢,ÊµÏÖÒÀÀµÓÚµ×²ã,ÊÇÆ½Ì¨Ó²¼þÏà¹ØµÄ
+ * @uc_link:å½“å‰contextæ‰§è¡Œç»“æŸåŽè¦æ‰§è¡Œçš„ä¸‹ä¸€ä¸ªcontext,å¦‚æžœuc_linkä¸ºç©º,æ‰§è¡Œå®Œå½“å‰contextä¹‹åŽé€€å‡ºç¨‹åº
+ * @uc_sigmask:æ‰§è¡Œå½“å‰ä¸Šä¸‹æ–‡è¿‡ç¨‹ä¸­éœ€è¦å±è”½çš„ä¿¡å·åˆ—è¡¨,å³ä¿¡å·æŽ©ç 
+ * @uc_stack:å½“å‰contextè¿è¡Œçš„æ ˆä¿¡æ¯
+ * @uc_mcontext:ä¿å­˜å…·ä½“çš„ç¨‹åºæ‰§è¡Œä¸Šä¸‹æ–‡,å¦‚PCå€¼ã€å †æ ˆæŒ‡é’ˆä»¥åŠå¯„å­˜å™¨ç­‰ä¿¡æ¯,å®žçŽ°ä¾èµ–äºŽåº•å±‚,æ˜¯å¹³å°ç¡¬ä»¶ç›¸å…³çš„
  * 
  * @typedef void makecontext(ucontext_t* ucp,void(void*)() func,int argc,...);
- * @º¯ÊýÃèÊö:³õÊ¼»¯Ò»¸öucontext_t,func²ÎÊýÖ¸Ã÷ÁË¸ÃcontextµÄÈë¿Úº¯Êý,argcÎªÈë¿Ú²ÎÊýµÄ¸öÊý,Ã¿´Î²ÎÊýµÄÀàÐÍ±ØÐëÊÇintÀàÐÍ
- * @ÔÚmakecontextÖ®Ç°,Ò»°ãÐèÒªÏÔÊ½µÄ³õÊ¼»¯Õ»ÐÅÏ¢ÒÔ¼°ÐÅºÅÑÚÂë,Í¬Ê±Ò²ÐèÒª³õÊ¼»¯uc_link,ÒÔ±ãÓÚ³ÌÐòÍË³öÉÏÏÂÎÄºó¼ÌÐøÖ´ÐÐ
- * @º¯ÊýµÄ×÷ÓÃÊÇ£ºÐÞ¸ÄucpÖ¸ÏòµÄÉÏÏÂÎÄ(´Ógetcontext()µ÷ÓÃÖÐ»ñÈ¡£©
- * @(ÔÚµ÷ÓÃmakecontext()Ö®Ç°,µ÷ÓÃÕß±ØÐëÎª´ËÉÏÏÂÎÄ·ÖÅäÒ»¸öÐÂ¶ÑÕ»,²¢½«ÆäµØÖ··ÖÅä¸øucp->uc¶ÑÕ»,¶¨ÒåÒ»¸öºóÐøÉÏÏÂÎÄ,²¢½«ÆäµØÖ··ÖÅä¸øucp->ucÁ´½Ó)
+ * @å‡½æ•°æè¿°:åˆå§‹åŒ–ä¸€ä¸ªucontext_t,funcå‚æ•°æŒ‡æ˜Žäº†è¯¥contextçš„å…¥å£å‡½æ•°,argcä¸ºå…¥å£å‚æ•°çš„ä¸ªæ•°,æ¯æ¬¡å‚æ•°çš„ç±»åž‹å¿…é¡»æ˜¯intç±»åž‹
+ * @åœ¨makecontextä¹‹å‰,ä¸€èˆ¬éœ€è¦æ˜¾å¼çš„åˆå§‹åŒ–æ ˆä¿¡æ¯ä»¥åŠä¿¡å·æŽ©ç ,åŒæ—¶ä¹Ÿéœ€è¦åˆå§‹åŒ–uc_link,ä»¥ä¾¿äºŽç¨‹åºé€€å‡ºä¸Šä¸‹æ–‡åŽç»§ç»­æ‰§è¡Œ
+ * @å‡½æ•°çš„ä½œç”¨æ˜¯ï¼šä¿®æ”¹ucpæŒ‡å‘çš„ä¸Šä¸‹æ–‡(ä»Žgetcontext()è°ƒç”¨ä¸­èŽ·å–ï¼‰
+ * @(åœ¨è°ƒç”¨makecontext()ä¹‹å‰,è°ƒç”¨è€…å¿…é¡»ä¸ºæ­¤ä¸Šä¸‹æ–‡åˆ†é…ä¸€ä¸ªæ–°å †æ ˆ,å¹¶å°†å…¶åœ°å€åˆ†é…ç»™ucp->ucå †æ ˆ,å®šä¹‰ä¸€ä¸ªåŽç»­ä¸Šä¸‹æ–‡,å¹¶å°†å…¶åœ°å€åˆ†é…ç»™ucp->ucé“¾æŽ¥)
  * 
- * @£¡£¡£¡£¡£¡ÉÔºó¼¤»î´ËÉÏÏÂÎÄÊ±(Ê¹ÓÃsetcontext()»òswapcontext()),½«µ÷ÓÃº¯Êýfunc,²¢´«µÝargcºóÃæµÄÒ»ÏµÁÐÕûÊý(int)²ÎÊý£»
+ * @ï¼ï¼ï¼ï¼ï¼ç¨åŽæ¿€æ´»æ­¤ä¸Šä¸‹æ–‡æ—¶(ä½¿ç”¨setcontext()æˆ–swapcontext()),å°†è°ƒç”¨å‡½æ•°func,å¹¶ä¼ é€’argcåŽé¢çš„ä¸€ç³»åˆ—æ•´æ•°(int)å‚æ•°ï¼›
  * 
- * @µ÷ÓÃ·½±ØÐëÔÚargcÖÐÖ¸¶¨ÕâÐ©²ÎÊýµÄÊýÄ¿.µ±´Ëº¯Êý·µ»ØÊ±,ºó¼ÌÉÏÏÂÎÄ±»¼¤»î.Èç¹ûºóÐøÉÏÏÂÎÄÖ¸ÕëÎª¿Õ,ÔòÏß³ÌÍË³ö
+ * @è°ƒç”¨æ–¹å¿…é¡»åœ¨argcä¸­æŒ‡å®šè¿™äº›å‚æ•°çš„æ•°ç›®.å½“æ­¤å‡½æ•°è¿”å›žæ—¶,åŽç»§ä¸Šä¸‹æ–‡è¢«æ¿€æ´».å¦‚æžœåŽç»­ä¸Šä¸‹æ–‡æŒ‡é’ˆä¸ºç©º,åˆ™çº¿ç¨‹é€€å‡º
  * 
  * @typedef int swapcontext(ucontext_t* olducp,ucontext_t* newucp);
- * @º¯ÊýÃèÊö:Ô­×Ó²Ù×÷,±£´æµ±Ç°ÉÏÏÂÎÄ²¢½«ÉÏÏÂÎÄÇÐ»»µ½ÐÂµÄÉÏÏÂÎÄÔËÐÐ
+ * @å‡½æ•°æè¿°:åŽŸå­æ“ä½œ,ä¿å­˜å½“å‰ä¸Šä¸‹æ–‡å¹¶å°†ä¸Šä¸‹æ–‡åˆ‡æ¢åˆ°æ–°çš„ä¸Šä¸‹æ–‡è¿è¡Œ
  * 
  * @typedef int getcontext(ucontext_t* ucp);
- * @º¯ÊýÃèÊö:½«µ±Ç°µÄÖ´ÐÐÉÏÏÂÎÄ±£´æÔÚucpÖÐ,ÒÔ±ãÓÚºóÐø»Ö¸´ÉÏÏÂÎÄ
+ * @å‡½æ•°æè¿°:å°†å½“å‰çš„æ‰§è¡Œä¸Šä¸‹æ–‡ä¿å­˜åœ¨ucpä¸­,ä»¥ä¾¿äºŽåŽç»­æ¢å¤ä¸Šä¸‹æ–‡
  * 
  * @typedef int setcontext(const ucontext_t* ucp);
- * @º¯ÊýÃèÊö:½«µ±Ç°³ÌÐòÇÐ»»µ½ÐÂµÄcontext,ÔÚÖ´ÐÐÕýÈ·µÄÇé¿öÏÂ¸Ãº¯ÊýÖ±½ÓÇÐ»»µ½ÐÂµÄÖ´ÐÐ×´Ì¬,²»»á·µ»Ø(µ½main)
+ * @å‡½æ•°æè¿°:å°†å½“å‰ç¨‹åºåˆ‡æ¢åˆ°æ–°çš„context,åœ¨æ‰§è¡Œæ­£ç¡®çš„æƒ…å†µä¸‹è¯¥å‡½æ•°ç›´æŽ¥åˆ‡æ¢åˆ°æ–°çš„æ‰§è¡ŒçŠ¶æ€,ä¸ä¼šè¿”å›ž(åˆ°main)
  * 
- * Ê¹ÓÃÊ¾Àý£º
+ * ä½¿ç”¨ç¤ºä¾‹ï¼š
  *  #include <stdio.h>
     #include <ucontext.h>
 
@@ -89,30 +91,30 @@ namespace minico
 
     static void func1(void)
     {
-        // ÇÐ»»µ½func2
+        // åˆ‡æ¢åˆ°func2
         swapcontext(&ctx[1], &ctx[2]);
 
-        // ·µ»Øºó£¬ÇÐ»»µ½ctx[1].uc_link£¬Ò²¾ÍÊÇmainµÄswapcontext·µ»Ø´¦
+        // è¿”å›žåŽï¼Œåˆ‡æ¢åˆ°ctx[1].uc_linkï¼Œä¹Ÿå°±æ˜¯mainçš„swapcontextè¿”å›žå¤„
     }
     static void func2(void)
     {
-        // ÇÐ»»µ½func1
+        // åˆ‡æ¢åˆ°func1
         swapcontext(&ctx[2], &ctx[1]);
 
-        // ·µ»Øºó£¬ÇÐ»»µ½ctx[2].uc_link£¬Ò²¾ÍÊÇfunc1µÄswapcontext·µ»Ø´¦
+        // è¿”å›žåŽï¼Œåˆ‡æ¢åˆ°ctx[2].uc_linkï¼Œä¹Ÿå°±æ˜¯func1çš„swapcontextè¿”å›žå¤„
     }
 
     int main (void)
     {
-        // ³õÊ¼»¯context1£¬°ó¶¨º¯Êýfunc1ºÍ¶ÑÕ»stack1
+        // åˆå§‹åŒ–context1ï¼Œç»‘å®šå‡½æ•°func1å’Œå †æ ˆstack1
         char stack1[8192];
-        getcontext(&ctx[1]);				//½«µ±Ç°µÄÖ´ÐÐÉÏÏÂÎÄ±£´æÔÚucpÖÐ,ÒÔ±ãÓÚºóÐø»Ö¸´ÉÏÏÂÎÄ
-        ctx[1].uc_stack.ss_sp   = stack1;		//Ö¸¶¨¸ÃÉÏÏÂÎÄ½á¹¹ÌåËù¶ÔÓ¦µÄÖ´ÐÐÕ»Îªstack1
-        ctx[1].uc_stack.ss_size = sizeof(stack1);	//Ö¸¶¨¸ÃÐ­³ÌÕ»µÄ´óÐ¡
-        ctx[1].uc_link = &ctx[0];			//Ö¸¶¨¸ÃÉÏÏÂÎÄ½á¹¹ÌåÖ´ÐÐ½áÊøºóÒªÔËÐÐµÄÏÂÒ»¸öÉÏÏÂÎÄ½á¹¹Ìå
-        makecontext(&ctx[1], func1, 0);			//Ö¸¶¨ctx[1]ÉÏÏÂÎÄ½á¹¹ÌåÐÂµÄÉÏÏÂÎÄ»·¾³Îªfunc1º¯Êý
+        getcontext(&ctx[1]);				//å°†å½“å‰çš„æ‰§è¡Œä¸Šä¸‹æ–‡ä¿å­˜åœ¨ucpä¸­,ä»¥ä¾¿äºŽåŽç»­æ¢å¤ä¸Šä¸‹æ–‡
+        ctx[1].uc_stack.ss_sp   = stack1;		//æŒ‡å®šè¯¥ä¸Šä¸‹æ–‡ç»“æž„ä½“æ‰€å¯¹åº”çš„æ‰§è¡Œæ ˆä¸ºstack1
+        ctx[1].uc_stack.ss_size = sizeof(stack1);	//æŒ‡å®šè¯¥åç¨‹æ ˆçš„å¤§å°
+        ctx[1].uc_link = &ctx[0];			//æŒ‡å®šè¯¥ä¸Šä¸‹æ–‡ç»“æž„ä½“æ‰§è¡Œç»“æŸåŽè¦è¿è¡Œçš„ä¸‹ä¸€ä¸ªä¸Šä¸‹æ–‡ç»“æž„ä½“
+        makecontext(&ctx[1], func1, 0);			//æŒ‡å®šctx[1]ä¸Šä¸‹æ–‡ç»“æž„ä½“æ–°çš„ä¸Šä¸‹æ–‡çŽ¯å¢ƒä¸ºfunc1å‡½æ•°
 
-        // ³õÊ¼»¯context2£¬°ó¶¨º¯Êýfunc2ºÍ¶ÑÕ»stack2
+        // åˆå§‹åŒ–context2ï¼Œç»‘å®šå‡½æ•°func2å’Œå †æ ˆstack2
         char stack2[8192];
         getcontext(&ctx[2]);
         ctx[2].uc_stack.ss_sp   = stack2;
@@ -120,9 +122,8 @@ namespace minico
         ctx[2].uc_link = &ctx[1];
         makecontext(&ctx[2], func2, 0);
 
-        // ±£´æµ±Ç°context£¬È»ºóÇÐ»»µ½context2ÉÏÈ¥£¬Ò²¾ÍÊÇfunc2
+        // ä¿å­˜å½“å‰contextï¼Œç„¶åŽåˆ‡æ¢åˆ°context2ä¸ŠåŽ»ï¼Œä¹Ÿå°±æ˜¯func2
         swapcontext(&ctx[0], &ctx[2]);
         return 0;
     }
-    @ÖØµãÀí½âÄÚÈÝ£º¶ÔÓÚmakecontext£¬Ö÷ÒªµÄ¹¤×÷¾ÍÊÇÉèÖÃº¯ÊýÖ¸ÕëºÍ¶ÑÕ»µ½¶ÔÓ¦context±£´æµÄspºÍpc¼Ä´æÆ÷ÖÐ£¬ÕâÒ²¾ÍÊÇÎªÊ²Ã´makecontextµ÷ÓÃÇ°£¬±ØÐëÒªÏÈgetcontextÏÂµÄÔ­Òò
  */
