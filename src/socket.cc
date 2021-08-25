@@ -5,14 +5,14 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
-#include <stdio.h>  // snprintf
+#include <stdio.h>  
 #include <fcntl.h>
 #include <string.h>
 #include <sys/epoll.h>
 
 using namespace minico;
 
-///@RAII����
+/** RAII*/
 Socket::~Socket()
 {
 	--(*_pRef);
@@ -72,7 +72,6 @@ int Socket::bind(const char* ip,int port)
 	memset(&serv, 0, sizeof(struct sockaddr_in));
 	serv.sin_family = AF_INET;
 	serv.sin_port = htons(port);
-    /** ��ʾ����������ip,���ipΪnull�Ͱ󶨱���������ip��ַ*/
     if(ip == nullptr)
     {
         serv.sin_addr.s_addr = htonl(INADDR_ANY);   
@@ -91,7 +90,6 @@ int Socket::listen()
 	return ret;
 }
 
-//����һ������,����һ�������ӵ�Socket ����ֻ�Ƿ�װ��ϵͳ����
 Socket Socket::accept_raw()
 {
 	int connfd = -1;
@@ -103,18 +101,15 @@ Socket Socket::accept_raw()
 		return Socket(connfd);
 	}
 
-	//accept�ɹ������û�ip
 	struct sockaddr_in* sock = (struct sockaddr_in*) & client;
-	int port = ntohs(sock->sin_port);          //linux�ϴ�ӡ��ʽ
+	int port = ntohs(sock->sin_port);          
 	struct in_addr in = sock->sin_addr;
-	char ip[INET_ADDRSTRLEN];   //INET_ADDRSTRLEN�����ϵͳĬ�϶��� 16
-	//�ɹ��Ļ���ʱIP��ַ������str�ַ����С�
+	char ip[INET_ADDRSTRLEN];   
 	inet_ntop(AF_INET, &in, ip, sizeof(ip));
 
 	return Socket(connfd, std::string(ip), port);
 }
 
-//����һ��Socket
 Socket Socket::accept()
 {
 	auto ret(accept_raw());
@@ -122,9 +117,7 @@ Socket Socket::accept()
 	{
 		return ret;
 	}
-	//��������õĻ�����ֱ����ԭ����socket����accpet����
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
-	//�л������� ����һ��accept
 	auto con(accept_raw());
 	if(con.isUseful())
 	{
@@ -133,7 +126,6 @@ Socket Socket::accept()
 	return accept();
 }
 
-//��socket�ж�����
 ssize_t Socket::read(void* buf, size_t count)
 {
 	auto ret = ::read(_sockfd, buf, count);
@@ -143,17 +135,15 @@ ssize_t Socket::read(void* buf, size_t count)
 	{
 		return ret;
 	}
-	//ʧ�ܷ���-1 EINTR�����ݶ�ȡǰ���������ź��ж� ��ô�����¶�ȡ
 	/** 接收缓存区没有数据，则会返回-1*/
 	if(ret == -1 && errno == EINTR)
 	{
 		LOG_INFO("read has error");
 		return read(buf, count);
 	}
-	LOG_INFO("the coroutine yield");
-	//����Э�̵��� ������Ϣ���ٻ����� ֮��͵���ԭ����read�Ϳ�����
+	//LOG_INFO("the coroutine yield");
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
-	LOG_INFO("the coroutine wake");
+	//LOG_INFO("the coroutine wake");
 	return ::read(_sockfd, buf, count);
 }
 
@@ -172,20 +162,16 @@ void Socket::connect(const char* ip, int port)
 	if(ret == -1 && errno == EINTR){
 		return connect(ip, port);
 	}
-	//����Э�̵����У��ȵ���д����д
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLOUT);
 	return connect(ip, port);
 }
 
-//��socket��д����
 ssize_t Socket::send(const void* buf, size_t count)
 {
-	//����SIGPIPE�ź�
 	size_t sendIdx = ::send(_sockfd, buf, count, MSG_NOSIGNAL);
 	if (sendIdx >= count){
 		return count;
 	}
-	//Э�̵��� һֱд ֱ��д��
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLOUT);
 	return send((char *)buf + sendIdx, count - sendIdx);
 }
@@ -231,18 +217,17 @@ int Socket::setKeepAlive(bool on)
 	return ret;
 }
 
-//����socketΪ��������
 int Socket::setNonBolckSocket()
 {
 	auto flags = fcntl(_sockfd, F_GETFL, 0);
-	int ret = fcntl(_sockfd, F_SETFL, flags | O_NONBLOCK);   //���óɷ�����ģʽ
+	int ret = fcntl(_sockfd, F_SETFL, flags | O_NONBLOCK);  
 	return ret;
 }
 
-//����socketΪ������
+
 int Socket::setBlockSocket()
 {
 	auto flags = fcntl(_sockfd, F_GETFL, 0);
-	int ret = fcntl(_sockfd, F_SETFL, flags & ~O_NONBLOCK);    //���ó�����ģʽ��
+	int ret = fcntl(_sockfd, F_SETFL, flags & ~O_NONBLOCK);   
 	return ret;
 }

@@ -23,11 +23,11 @@ Epoller::~Epoller()
 
 bool Epoller::init()
 {
-	epollFd_ = ::epoll_create1(EPOLL_CLOEXEC);	//初始化时创建一个epoll_fd
+	epollFd_ = ::epoll_create1(EPOLL_CLOEXEC);	
 	return isEpollFdUseful();
 }
 
-//修改Epoller中的事件
+
 bool Epoller::modifyEv(Coroutine* pCo, int fd, int interesEv)
 {
 	if (!isEpollFdUseful())
@@ -45,7 +45,7 @@ bool Epoller::modifyEv(Coroutine* pCo, int fd, int interesEv)
 	return true;
 }
 
-//向Epoller中添加事件
+
 bool Epoller::addEv(Coroutine* pCo, int fd, int interesEv)
 {
 	if (!isEpollFdUseful())
@@ -63,7 +63,6 @@ bool Epoller::addEv(Coroutine* pCo, int fd, int interesEv)
 	return true;
 }
 
-//从Epoller中移除事件
 bool Epoller::removeEv(Coroutine* pCo, int fd, int interesEv)
 {
 	if (!isEpollFdUseful())
@@ -80,7 +79,7 @@ bool Epoller::removeEv(Coroutine* pCo, int fd, int interesEv)
 	}
 	return true;
 }
-///@获取被激活的事件服务,返回errno
+
 int Epoller::getActEvServ(int timeOutMs, std::vector<Coroutine*>& activeEvServs)
 {
 	if (!isEpollFdUseful())
@@ -97,13 +96,11 @@ int Epoller::getActEvServ(int timeOutMs, std::vector<Coroutine*>& activeEvServs)
 		}
 		for (int i = 0; i < actEvNum; ++i)
 		{
-			//设置事件类型，放进活跃事件列表中
 			Coroutine* pCo = static_cast<Coroutine*>(activeEpollEvents_[i].data.ptr);
 			activeEvServs.push_back(pCo);
 		}
 		if (actEvNum == static_cast<int>(activeEpollEvents_.size()))
 		{
-			//若从epoll中获取事件的数组满了，说明这个数组的大小可能不够，扩展一倍
 			activeEpollEvents_.resize(activeEpollEvents_.size() * 2);
 		}
 	}

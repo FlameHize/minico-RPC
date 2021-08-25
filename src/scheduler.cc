@@ -28,7 +28,8 @@ bool Scheduler::startScheduler(int threadCnt)
 	for (int i = 0; i < threadCnt; ++i)
 	{
 		processors_.emplace_back(new Processor(i));
-		processors_[i]->loop();                       ///@开启每个处理器的循环
+		/** 开启每个处理器的循环*/
+		processors_[i]->loop();                       
 	}
 	return true;
 }
@@ -41,7 +42,8 @@ Scheduler* Scheduler::getScheduler()
 		if (nullptr == pScher_)
 		{
 			pScher_ = new Scheduler();
-			pScher_->startScheduler(::get_nprocs_conf());	//根据实际CPU核心数开启对应数量的线程
+			/** 根据实际CPU核心数开启对应数量的线程*/
+			pScher_->startScheduler(::get_nprocs_conf());	
 		}
 	}
 	return pScher_;

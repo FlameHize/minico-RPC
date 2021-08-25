@@ -9,27 +9,28 @@
 #include "coroutine.h"
 #include "epoller.h"
 #include "timer.h"
+#include "logger.h"
 /**
- * @brief ´¦ÀíÆ÷£¨¶ÔÓ¦Ò»¸öCPUµÄºËĞÄ£¬ÔÚnetcoÖĞ¶ÔÓ¦Ò»¸öÏß³Ì£© ÆäÊµÖÊ¾ÍÊÇÒ»¸öÏß³Ì
- * @detail ¸ºÔğ´æ·ÅĞ­³ÌCoroutineÊµÀı²¢¹ÜÀíÆäÉúÃüÆÚ
- * @param[in] newCoroutines_ ĞÂĞ­³ÌË«»º³å¶ÓÁĞ£¬Ê¹ÓÃÒ»¸ö¶ÓÁĞÀ´´æ·ÅĞÂÀ´µÄĞ­³Ì£¬ÁíÒ»¸ö¶ÓÁĞ¸øProcessorÖ÷Ñ­»·ÓÃÓÚÖ´ĞĞĞÂÀ´µÄĞ­³Ì£¬Ïû·ÑÍê³ÉÒÔºó¾Í½»»»¶ÓÁĞ£¨Ã¿¼ÓÈëÒ»´ÎĞÂĞ­³Ì¾Í»½ĞÑÒ»´ÎÖ÷Ñ­»·£¬ÒÔÁ¢¼´Ö´ĞĞĞÂÀ´µÄĞ­³Ì£©
- * @param[in] actCoroutines_ ±»epoll¼¤»îµÄĞ­³Ì¶ÓÁĞ.µ±epoll_wait±»¼¤»îÊ±£¬ProcessorÖ÷Ñ­»·»á³¢ÊÔ´ÓEpollÖĞ»ñÈ¡»îÔ¾µÄĞ­³Ì£¬´æ·ÅÔÚ¸ÃactCoroutines¶ÓÁĞÖĞ£¬È»ºóÒÀ´Î»Ö¸´Ö´ĞĞ
- * @param[in] timerExpiredCo_ ³¬Ê±µÄĞ­³Ì¶ÓÁĞ.µ±epoll_wait±»¼¤»îÊ±,ProcessorÖ÷Ñ­»·»áÊ×ÏÈ³¢ÊÔ´ÓTimerÖĞ»ñÈ¡»îÔ¾µÄĞ­³Ì£¬´æ·ÅÔÚtimerExpiredCo¶ÓÁĞÖĞ£¬È»ºóÒÀ´Î»Ö¸´Ö´ĞĞ
- * @param[in] removedCo_ ±»ÒÆ³ıµÄĞ­³Ì¶ÓÁĞ.Ö´ĞĞÍêµÄĞ­³Ì»áÊ×ÏÈ·Åµ½¸Ã¶ÓÁĞÖĞ,ÔÚÒ»´ÎÑ­»·µÄ×îºó±»Í³Ò»ÇåÀí
- * @detail Ö÷Ñ­»·Ö´ĞĞË³Ğò£ºtimer->new->act->remove
+ * @brief å¤„ç†å™¨ï¼ˆå¯¹åº”ä¸€ä¸ªCPUçš„æ ¸å¿ƒï¼Œåœ¨netcoä¸­å¯¹åº”ä¸€ä¸ªçº¿ç¨‹ï¼‰ å…¶å®è´¨å°±æ˜¯ä¸€ä¸ªçº¿ç¨‹
+ * @detail è´Ÿè´£å­˜æ”¾åç¨‹Coroutineå®ä¾‹å¹¶ç®¡ç†å…¶ç”Ÿå‘½æœŸ
+ * @param[in] newCoroutines_ æ–°åç¨‹åŒç¼“å†²é˜Ÿåˆ—ï¼Œä½¿ç”¨ä¸€ä¸ªé˜Ÿåˆ—æ¥å­˜æ”¾æ–°æ¥çš„åç¨‹ï¼Œå¦ä¸€ä¸ªé˜Ÿåˆ—ç»™Processorä¸»å¾ªç¯ç”¨äºæ‰§è¡Œæ–°æ¥çš„åç¨‹ï¼Œæ¶ˆè´¹å®Œæˆä»¥åå°±äº¤æ¢é˜Ÿåˆ—ï¼ˆæ¯åŠ å…¥ä¸€æ¬¡æ–°åç¨‹å°±å”¤é†’ä¸€æ¬¡ä¸»å¾ªç¯ï¼Œä»¥ç«‹å³æ‰§è¡Œæ–°æ¥çš„åç¨‹ï¼‰
+ * @param[in] actCoroutines_ è¢«epollæ¿€æ´»çš„åç¨‹é˜Ÿåˆ—.å½“epoll_waitè¢«æ¿€æ´»æ—¶ï¼ŒProcessorä¸»å¾ªç¯ä¼šå°è¯•ä»Epollä¸­è·å–æ´»è·ƒçš„åç¨‹ï¼Œå­˜æ”¾åœ¨è¯¥actCoroutinesé˜Ÿåˆ—ä¸­ï¼Œç„¶åä¾æ¬¡æ¢å¤æ‰§è¡Œ
+ * @param[in] timerExpiredCo_ è¶…æ—¶çš„åç¨‹é˜Ÿåˆ—.å½“epoll_waitè¢«æ¿€æ´»æ—¶,Processorä¸»å¾ªç¯ä¼šé¦–å…ˆå°è¯•ä»Timerä¸­è·å–æ´»è·ƒçš„åç¨‹ï¼Œå­˜æ”¾åœ¨timerExpiredCoé˜Ÿåˆ—ä¸­ï¼Œç„¶åä¾æ¬¡æ¢å¤æ‰§è¡Œ
+ * @param[in] removedCo_ è¢«ç§»é™¤çš„åç¨‹é˜Ÿåˆ—.æ‰§è¡Œå®Œçš„åç¨‹ä¼šé¦–å…ˆæ”¾åˆ°è¯¥é˜Ÿåˆ—ä¸­,åœ¨ä¸€æ¬¡å¾ªç¯çš„æœ€åè¢«ç»Ÿä¸€æ¸…ç†
+ * @detail ä¸»å¾ªç¯æ‰§è¡Œé¡ºåºï¼štimer->new->act->remove
  */
-extern __thread int threadIdx;		//Ïß³ÌĞòºÅ
+extern __thread int threadIdx;		
 
 namespace minico
 {
-	//Ïß³ÌµÄ×´Ì¬
+
 	enum processerStatus
 	{
 		PRO_RUNNING = 0,
 		PRO_STOPPING,
 		PRO_STOPPED
 	};
-	//ÊÇ·ñÕıÔÚ¼ÓÈëĞÂĞ­³Ì
+
 	enum newCoAddingStatus
 	{
 		NEWCO_ADDING = 0,
@@ -44,84 +45,73 @@ namespace minico
 
 		DISALLOW_COPY_MOVE_AND_ASSIGN(Processor);
 
-		//ÔËĞĞÒ»¸öĞÂĞ­³Ì£¬¸ÃĞ­³ÌµÄº¯ÊıÊÇfunc
+		/** è¿è¡Œä¸€ä¸ªæ–°åç¨‹ï¼Œè¯¥åç¨‹çš„å‡½æ•°æ˜¯func*/
 		void goNewCo(std::function<void()>&& func, size_t stackSize);
 		void goNewCo(std::function<void()>& func, size_t stackSize);
 
 		void yield();
 
-		//µ±Ç°Ğ­³ÌµÈ´ıtimeºÁÃë
 		void wait(Time time);
 
-		//Çå³ıµ±Ç°ÕıÔÚÔËĞĞµÄĞ­³Ì
 		void killCurCo();
-		//Ïß³ÌµÄÊÂ¼şÑ­»·
+		
+		/** çº¿ç¨‹çš„äº‹ä»¶å¾ªç¯*/
 		bool loop();
-		//Í£Ö¹Ïß³ÌÑ­»·
+
 		void stop();
 
 		void join();
 
-		//µÈ´ıfdÉÏµÄevÊÂ¼ş·µ»Ø
+		/** ç­‰å¾…fdä¸Šçš„eväº‹ä»¶è¿”å›*/
 		void waitEvent(int fd, int ev);
 
-		//»ñÈ¡µ±Ç°ÕıÔÚÔËĞĞµÄĞ­³Ì
 		inline Coroutine* getCurRunningCo() { return pCurCoroutine_; };
 
 		inline Context* getMainCtx() { return &mainCtx_; }
-		//»ñµÃµ±Ç°Ïß³Ì´æÔÚµÄĞ­³Ì×ÜÊıÁ¿
+
 		inline size_t getCoCnt() { return coSet_.size(); }
-		//ÔËĞĞÒ»¸öÖ¸¶¨µÄĞ­³Ì
+
+		/** è¿è¡Œä¸€ä¸ªæŒ‡å®šçš„åç¨‹*/
 		void goCo(Coroutine* co);
-		//ÔËĞĞÒ»×éÖ¸¶¨µÄĞ­³Ì
 		void goCoBatch(std::vector<Coroutine*>& cos);
 
 	private:
-
-		//»Ö¸´ÔËĞĞÖ¸¶¨Ğ­³Ì
+		/** æ¢å¤è¿è¡ŒæŒ‡å®šåç¨‹*/
 		void resume(Coroutine*);
-		//»½ĞÑepoll
+		/** å”¤é†’epoll */
 		inline void wakeUpEpoller();
 
-		//¸Ã´¦ÀíÆ÷µÄÏß³ÌºÅ
 		int tid_;
-		//Ïß³ÌµÄ×´Ì¬
+
 		int status_;
-		//std¸ø¶¨µÄÏß³Ì¶ÔÏó
+
 		std::thread* pLoop_;
 
-		//ĞÂÈÎÎñ¶ÓÁĞ£¬Ê¹ÓÃË«»º´æ¶ÓÁĞ(Ò»¸ö¶ÓÁĞÀ´´æ·ÅĞÂÀ´µÄĞ­³Ì,ÁíÒ»¸ö¶ÓÁĞ¸øÏß³ÌÊÂ¼şÑ­»·ÓÃÓÚÖ´ĞĞĞÂÀ´µÄĞ­³Ì,Ïû·ÑÍêºó¾Í½»»»¶ÓÁĞ)
 		std::queue<Coroutine*> newCoroutines_[2];
 
-		//ĞÂÈÎÎñË«»º´æ¶ÓÁĞÖĞÕıÔÚÔËĞĞµÄ¶ÓÁĞºÅ£¬ÁíÒ»ÌõÓÃÓÚÌí¼ÓÈÎÎñ
 		volatile int runningNewQue_;
 
 		Spinlock newQueLock_;
 
 		Spinlock coPoolLock_;
 
-		//std::mutex newCoQueMtx_;
-
-		//EventEpoller·¢ÏÖµÄ»îÔ¾ÊÂ¼şËù·ÅµÄÁĞ±í
 		std::vector<Coroutine*> actCoroutines_;
 
 		std::set<Coroutine*> coSet_;
 
-		//¶¨Ê±Æ÷ÈÎÎñÁĞ±í
 		std::vector<Coroutine*> timerExpiredCo_;
 
-		//±»ÒÆ³ıµÄĞ­³ÌÁĞ±í£¬ÒªÒÆ³ıÄ³Ò»¸öÊÂ¼ş»áÏÈ·ÅÔÚ¸ÃÁĞ±íÖĞ£¬Ò»´ÎÑ­»·½áÊø²Å»áÕæÕıdelete
 		std::vector<Coroutine*> removedCo_;
 
-		Epoller epoller_;                     //EPOLL¿ØÖÆÆ÷
+		Epoller epoller_;                     
 
-		Timer timer_;                         //¶¨Ê±Æ÷
+		Timer timer_;                         
 
-		ObjPool<Coroutine> coPool_;           //¶ÔÏó³Ø
+		ObjPool<Coroutine> coPool_;           
 
-		Coroutine* pCurCoroutine_;            //µ±Ç°Ğ­³Ì
+		Coroutine* pCurCoroutine_;            
 
-		Context mainCtx_;                     //ÓÃÓÚ½øĞĞµ÷¶È±£´æµÄmainCTXÉÏÏÂÎÄ½á¹¹Ìå
+		Context mainCtx_;                     
 	};
 
 }

@@ -20,14 +20,14 @@ namespace minico
 		~ObjPool() {};
 
 		DISALLOW_COPY_MOVE_AND_ASSIGN(ObjPool);
-		//创建一个对象
+
 		template<typename... Args>
 		inline T* new_obj(Args... args);
-		//删除一个对象
+
 		inline void delete_obj(void* obj);
 
 	private:
-		//true_type与false_type用来判断是否需要重要的析构函数
+
 		template<typename... Args>
 		inline T* new_aux(std::true_type, Args... args);
 
@@ -37,7 +37,7 @@ namespace minico
 		inline void delete_aux(std::true_type, void* obj);
 
 		inline void delete_aux(std::false_type, void* obj);
-		//自带的内存池
+
 		MemPool<sizeof(T)> _memPool;
 
 	};
@@ -46,8 +46,6 @@ namespace minico
 	template<typename... Args>
 	inline T* ObjPool<T>::new_obj(Args... args)
 	{
-		//typedef std::integral_constant<bool,true> std::true_type 
-		//typedef std::integral_constant<bool,false> std::false_type
 		return new_aux(std::integral_constant<bool, std::is_trivially_constructible<T>::value>(), args...);
 	}
 

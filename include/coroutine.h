@@ -1,17 +1,16 @@
-//@author Liu Yukang
 #pragma once
 #include <functional>
 #include "context.h"
 #include "utils.h"
+#include "logger.h"
 /**
- * netco»á¸ù¾İ¼ÆËã»úµÄºËĞÄÊı¿ª¶ÔÓ¦µÄÏß³ÌÊıÀ´ÔËĞĞĞ­³Ì£¬ÆäÖĞÃ¿Ò»¸öÏß³Ì¶ÔÓ¦Ò»¸öProcessorÊµÀı
- * Ğ­³ÌCoroutineÊµÀıÔËĞĞÔÚProcessorµÄÖ÷Ñ­»·ÉÏ£¬ProcessorÊ¹ÓÃEpollºÍTimer½øĞĞÈÎÎñµ÷¶È
- * ¶øSchedulerÔò²¢²»´æÔÚÕâÃ´Ò»¸öÑ­»·£¬ËüÊÇÒ»¸öÈ«¾Öµ¥Àı£¬µ±Ä³¸öÏß³ÌÖĞµ÷ÓÃco_go()ÔËĞĞÒ»¸öĞÂĞ­³Ìºó
- * Êµ¼Ê¾Í»áµ÷ÓÃ¸ÃÊµÀıµÄ·½·¨£¬Ñ¡ÔñÒ»¸öĞ­³Ì×îÉÙµÄPreocessorÀ´½Ó¹ÜÕâ¸öĞ­³Ì
+ * minicoä¼šæ ¹æ®è®¡ç®—æœºçš„æ ¸å¿ƒæ•°å¼€å¯¹åº”çš„çº¿ç¨‹æ•°æ¥è¿è¡Œåç¨‹ï¼Œå…¶ä¸­æ¯ä¸€ä¸ªçº¿ç¨‹å¯¹åº”ä¸€ä¸ªProcessorå®ä¾‹
+ * åç¨‹Coroutineå®ä¾‹è¿è¡Œåœ¨Processorçš„ä¸»å¾ªç¯ä¸Šï¼ŒProcessorä½¿ç”¨Epollå’ŒTimerè¿›è¡Œä»»åŠ¡è°ƒåº¦
+ * Scheduleræ˜¯ä¸€ä¸ªå…¨å±€å•ä¾‹ï¼Œå½“æŸä¸ªçº¿ç¨‹ä¸­è°ƒç”¨co_go()è¿è¡Œä¸€ä¸ªæ–°åç¨‹åå®é™…å°±ä¼šè°ƒç”¨
+ * è¯¥å®ä¾‹çš„æ–¹æ³•ï¼Œé€‰æ‹©ä¸€ä¸ªåç¨‹æœ€å°‘çš„Preocessoræ¥æ¥ç®¡è¿™ä¸ªåç¨‹
  */
 namespace minico
 {
-	//Ğ­³ÌµÄËÄÖÖ×´Ì¬ ·Ö±ğÎª0 1 2 3
 	enum coStatus
 	{
 		CO_READY = 0,
@@ -19,9 +18,8 @@ namespace minico
 		CO_WAITING,
 		CO_DEAD
 	};
-
 	class Processor;
-	///@Ğ­³ÌÀà·â×°
+
 	class Coroutine
 	{
 	public:
@@ -31,29 +29,27 @@ namespace minico
 
 		DISALLOW_COPY_MOVE_AND_ASSIGN(Coroutine);
 
-		//»Ö¸´ÔËĞĞµ±Ç°Ğ­³Ì
+		/** æ¢å¤å½“å‰åç¨‹*/
 		void resume();
 
-		//ÔİÍ£ÔËĞĞµ±Ç°Ğ­³Ì
+		/** åˆ‡å‡ºå½“å‰åç¨‹*/
 		void yield();
 
 		Processor* getMyProcessor(){return pMyProcessor_;}
 
-		//ÔËĞĞ¸ÃĞ­³ÌµÄº¯Êı
 		inline void startFunc() { coFunc_(); }
 
-		//»ñÈ¡¸ÃĞ­³ÌµÄÉÏÏÂÎÄ
 		inline Context* getCtx() { return &ctx_; }
 
 	private:
 
-		std::function<void()> coFunc_;		//·â×°µÄ¹¤×÷º¯Êı
+		std::function<void()> coFunc_;		
 
-		Processor* pMyProcessor_;		//¶ÔÓ¦µÄ´¦ÀíÆ÷ºËĞÄ
+		Processor* pMyProcessor_;		
 
-		int status_;				//Ğ­³ÌµÄ×´Ì¬
+		int status_;				
 
-		Context ctx_;				//Ğ­³ÌµÄÉÏÏÂÎÄ½á¹¹
+		Context ctx_;				
 
 	};
 

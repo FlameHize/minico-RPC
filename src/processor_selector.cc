@@ -3,7 +3,6 @@
 
 using namespace minico;
 
-//函数的作用：分配一个线程用来运行协程任务
 Processor* ProcessorSelector::next()
 {
 	int n = static_cast<int>(processors_.size());

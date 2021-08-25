@@ -1,10 +1,11 @@
 #pragma once
 #include "parameter.h"
 #include "utils.h"
+#include "logger.h"
 
 namespace minico
 {
-	//Ğ§·ÂSTL¶ş¼¶¿Õ¼äÅäÖÃÆ÷µÄÊµÏÖ
+	/** æ•ˆä»¿STLäºŒçº§ç©ºé—´é…ç½®å™¨çš„å®ç°*/
 	struct MemBlockNode
 	{
 		union
@@ -14,7 +15,10 @@ namespace minico
 		};
 	};
 
-	//Ã¿´Î¿ÉÒÔ´ÓÄÚ´æ³ØÖĞ»ñÈ¡objSize´óĞ¡µÄÄÚ´æ¿é ÄÚ´æ³ØµÄÊµÏÖ£¨¸ÃÄÚ´æ³Ø¿éµÄ´óĞ¡ÊÇÓë¶ÔÏó´óĞ¡Ç¿Ïà¹ØµÄ£©
+	/**
+	 * æ¯æ¬¡å¯ä»¥ä»å†…å­˜æ± ä¸­è·å–objSizeå¤§å°çš„å†…å­˜å— 
+	 * è¯¥å†…å­˜æ± å—çš„å¤§å°æ˜¯ä¸å¯¹è±¡å¤§å°å¼ºç›¸å…³çš„
+	 */
 	template<size_t objSize>
 	class MemPool
 	{
@@ -35,18 +39,18 @@ namespace minico
 		~MemPool();
 
 		DISALLOW_COPY_MOVE_AND_ASSIGN(MemPool);
-		//·ÖÅäÄÚ´æ¿é
+
 		void* AllocAMemBlock();
 		void FreeAMemBlock(void* block);
 
 	private:
-		///@¿ÕÏĞÁ´±í
+
 		MemBlockNode* _freeListHead;
-		///@mallocµÄ´óÄÚ´æ¿éÁ´±í,£¨ĞÎÊ½£º·Åµ½malloc³öÀ´µÄÄÚ´æ¿éµÄÍ·²¿µÄÖ¸Õë£©ÓÃÀ´Á¬½ÓËùÓĞµÄ¿ÕÏĞÁ´±í
+
 		MemBlockNode* _mallocListHead;
-		///@Êµ¼ÊmallocµÄ´ÎÊı
+
 		size_t _mallocTimes;
-		///@Ã¿¸öÄÚ´æ¿é´óĞ¡
+
 		size_t objSize_;
 	};
 
@@ -57,7 +61,7 @@ namespace minico
 		{
 			MemBlockNode* mallocNode = _mallocListHead;
 			_mallocListHead = mallocNode->next;
-			free(static_cast<void*>(mallocNode));	//Ïàµ±ÓÚÊÕ»ØËùÓĞµÄÄÚ´æ
+			free(static_cast<void*>(mallocNode));	
 		}
 	}
 
@@ -65,19 +69,18 @@ namespace minico
 	void* MemPool<objSize>::AllocAMemBlock()
 	{
 		void* ret;
-		//Èç¹û¿ÕÏĞÁ´±íµÄ½ÚµãÊıÁ¿Îª¿Õ ¾Í¸üĞÂÒ»¸ö_mallocListHeadºÍÎ¬»¤Ò»Ìõ_freeListHead
 		if (nullptr == _freeListHead)
 		{
-			//Ê×ÏÈ»á·ÖÅä(40 + ·ÖÅä´ÎÊı) * ¶ÔÏó´óĞ¡µÄÄÚ´æ¿Õ¼ä
+			/** é¦–å…ˆä¼šåˆ†é…(40 + åˆ†é…æ¬¡æ•°) * å¯¹è±¡å¤§å°çš„å†…å­˜ç©ºé—´*/
 			size_t mallocCnt = parameter::memPoolMallocObjCnt + _mallocTimes;
 			void* newMallocBlk = malloc(mallocCnt * objSize_ + sizeof(MemBlockNode));
-			//½«¸ÃÄÚ´æ¿Õ¼äµÄÊ×µØÖ·½âÊÍÎªÒ»¸öMemBlockNodeÖ¸Õë
+			/** å°†è¯¥å†…å­˜ç©ºé—´çš„é¦–åœ°å€è§£é‡Šä¸ºä¸€ä¸ªMemBlockNodeæŒ‡é’ˆ*/
 			MemBlockNode* mallocNode = static_cast<MemBlockNode*>(newMallocBlk);
-			//Ïàµ±ÓÚmallocNodeÊÇÒ»¸öÍ·½Úµã
+			/** mallocNodeæ˜¯ä¸€ä¸ªå¤´èŠ‚ç‚¹*/
 			mallocNode->next = _mallocListHead;
-			//_mallocListHeadÊÇÎ¬»¤µÄÒ»¸ö½ÚµãÖ¸Õë,ÆänextÖ¸ÏòÆä×ÔÉí(Í¬ÑùÒ²ÊÇÖ¸ÏòÕâ¿éÄÚ´æ¿Õ¼äµÄÆğµã)
+
 			_mallocListHead = mallocNode;
-			//½«¸Ã¿éÄÚ´æ¿Õ¼ä×ª»¯Îªchar*À´½âÊÍ
+
 			newMallocBlk = static_cast<char*>(newMallocBlk) + sizeof(MemBlockNode);
 			for (size_t i = 0; i < mallocCnt; ++i)
 			{
@@ -92,7 +95,7 @@ namespace minico
 		_freeListHead = _freeListHead->next;
 		return ret;
 	}
-	//ÊÍ·Å,Ïàµ±ÓÚ¹é»¹µ½¿ÕÏĞÁ´±íÖĞÈ¥
+
 	template<size_t objSize>
 	void MemPool<objSize>::FreeAMemBlock(void* block)
 	{

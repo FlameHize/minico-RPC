@@ -8,8 +8,8 @@
 #include <mutex>
 #include <functional>
 /**
- * timefdÅäºÏÒ»¸öĞ¡¸ù¶ÑÀ´ÊµÏÖ
- * Ğ¡¸ù¶Ñ´æ·ÅµÄÊÇÊ±¼äºÍĞ­³Ì¶ÔÏóµÄpair
+ * timefdé…åˆä¸€ä¸ªå°æ ¹å †æ¥å®ç°
+ * å°æ ¹å †å­˜æ”¾çš„æ˜¯æ—¶é—´å’Œåç¨‹å¯¹è±¡çš„pair
  */
 #define TIMER_DUMMYBUF_SIZE 1024
 
@@ -18,11 +18,10 @@ namespace minico
 	class Coroutine;
 	class Epoller;
 
-	//¶¨Ê±Æ÷
+	//ï¿½ï¿½Ê±ï¿½ï¿½
 	class Timer
 	{
 	public:
-		//Ğ¡¸ù¶Ñ Ã¿´Îµ¯³öµÄ¶¼ÊÇ×îĞ¡µÄTime greaterµÄº¬ÒåÊÇ´ÓĞ¡µ½´óÅÅÁĞ£¨Ä¬ÈÏÇé¿öÏÂpriority_queueÊÇÒ»¸ö´ó¸ù¶Ñ£©
 		using TimerHeap = typename std::priority_queue<std::pair<Time, Coroutine*>, std::vector<std::pair<Time, Coroutine*>>, std::greater<std::pair<Time, Coroutine*>>>;
 
 		Timer();
@@ -32,31 +31,24 @@ namespace minico
 
 		DISALLOW_COPY_MOVE_AND_ASSIGN(Timer);
 
-		//»ñÈ¡ËùÓĞÒÑ¾­³¬Ê±µÄĞèÒªÖ´ĞĞµÄĞ­³Ìµ½expiredCoroutinesÖĞ
 		void getExpiredCoroutines(std::vector<Coroutine*>& expiredCoroutines);
 
-		//ÔÚtimeÊ±¿ÌĞèÒª»Ö¸´Ğ­³Ìco
 		void runAt(Time time, Coroutine* pCo);
 
-		//¾­¹ıtimeºÁÃë»Ö¸´Ğ­³Ìco
 		void runAfter(Time time, Coroutine* pCo);
-		//»½ĞÑepoll
+
 		void wakeUp();
 
 	private:
-		//¸øtimefdÖØĞÂÉèÖÃÊ±¼ä£¬timeÊÇ¾ø¶ÔÊ±¼ä
+
 		bool resetTimeOfTimefd(Time time);
 
 		inline bool isTimeFdUseful() { return timeFd_ < 0 ? false : true; };
 
-		//LinuxµÄtimerfd
 		int timeFd_;
 
-		//ÓÃÓÚread timefdÉÏÊı¾İµÄ
 		char dummyBuf_[TIMER_DUMMYBUF_SIZE];
 
-		//¶¨Ê±Æ÷Ğ­³Ì¼¯ºÏ
-		//std::multimap<Time, Coroutine*> timerCoMap_;
 		TimerHeap timerCoHeap_;
 	};
 

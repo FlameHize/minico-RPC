@@ -7,20 +7,17 @@ namespace minico
 
 	enum scheduleStrategy
 	{
-		MIN_EVENT_FIRST = 0 , //最少事件优先
-		ROUND_ROBIN	      //轮流分发
+		MIN_EVENT_FIRST = 0 , 
+		ROUND_ROBIN	      
 	};
 
-	//事件管理器选择器，决定下一个协程应该放到哪一个线程中
+	/** 浜嬩欢绠＄悊鍣ㄩ�夋嫨鍣紝鍐冲畾涓嬩竴涓崗绋嬪簲璇ユ斁鍒板摢涓�涓嚎绋嬩腑*/
 	class ProcessorSelector
 	{
 	public:
 		ProcessorSelector(std::vector<Processor*>& processors, int strategy = MIN_EVENT_FIRST) :  curPro_(-1) , strategy_(strategy) , processors_(processors) {}
 		~ProcessorSelector() {}
 
-		//设置分发任务的策略
-		//MIN_EVENT_FIRST则每次挑选EventService最少的EventManager接收新连接
-		//ROUND_ROBIN则每次轮流挑选EventManager接收新连接
 		inline void setStrategy(int strategy) { strategy_ = strategy; };
 
 		Processor* next();

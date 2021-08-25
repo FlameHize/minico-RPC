@@ -4,7 +4,6 @@
 
 namespace minico {
 
-	//配合std::atomic_int定义的二元信号量使用，为1表示资源可以使用，为0表示资源不可使用
 	class SpinlockGuard
 	{
 	public:

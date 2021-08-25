@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -g -ggdb  -rdynamic CMakeFiles/client_test.dir/test_client.cc.o  -o ../../bin/client_test  -Wl,-rpath,/home/zhuguangxu/product/minico-rpc/lib ../../lib/libminico-rpc.so 
