@@ -1,4 +1,4 @@
 *.o
 *.so
 .vscode
-netco_test
+minico_test
