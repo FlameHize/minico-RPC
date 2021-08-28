@@ -157,7 +157,7 @@ int main()
 ```
 架构
 ---
-![image](https://github.com/FlameHize/minico-RPC/blob/main/picture/image.png)
+![image](https://github.com/FlameHize/minico-RPC/blob/main/picture/1630166978.jpg)
 
 目前的缺点
 ---
