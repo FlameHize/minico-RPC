@@ -155,6 +155,9 @@ int main()
     return 0;
 }
 ```
+架构
+---
+![image](https://github.com/FlameHize/minico-RPC/blob/main/picture/image.png)
 
 目前的缺点
 ---
