@@ -1,0 +1,1 @@
+/usr/bin/c++ -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -g -ggdb -rdynamic CMakeFiles/server_test.dir/test_server.cc.o -o ../../bin/server_test  -Wl,-rpath,/home/zgx/Desktop/Repository/lib ../../lib/libminico-rpc.so 

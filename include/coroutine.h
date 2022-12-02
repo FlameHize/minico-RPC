@@ -35,20 +35,27 @@ namespace minico
 		/** 切出当前协程*/
 		void yield();
 
+		/** 获得当前处理器指针*/
 		Processor* getMyProcessor(){return pMyProcessor_;}
 
+		/** 开始运行协程任务*/
 		inline void startFunc() { coFunc_(); }
 
+		/** 获得当前协程上下文*/
 		inline Context* getCtx() { return &ctx_; }
 
 	private:
 
+		/** 协程搭载的任务*/
 		std::function<void()> coFunc_;		
 
+		/** 协程对应的处理器*/
 		Processor* pMyProcessor_;		
 
+		/** 协程状态*/
 		int status_;				
 
+		/** 协程上下文*/
 		Context ctx_;				
 
 	};

@@ -28,7 +28,7 @@ namespace minico
 		/** 用函数指针设置当前context的上下文入口*/
 		void makeContext(void (*func)(), Processor*, Context*);
 
-		/** 直接用当前程序状态设置当前context的上下文*/
+		/** 保存当前程序的上下文*/
 		void makeCurContext();
 
 		/** 将当前上下文保存到oldCtx中，然后切换到当前上下文，若oldCtx为空，则直接运行*/
@@ -108,11 +108,11 @@ namespace minico
     {
         // 初始化context1，绑定函数func1和堆栈stack1
         char stack1[8192];
-        getcontext(&ctx[1]);				//将当前的执行上下文保存在ucp中,以便于后续恢复上下文
-        ctx[1].uc_stack.ss_sp   = stack1;		//指定该上下文结构体所对应的执行栈为stack1
+        getcontext(&ctx[1]);				        //将当前的执行上下文保存在ucp中,以便于后续恢复上下文
+        ctx[1].uc_stack.ss_sp   = stack1;		    //指定该上下文结构体所对应的执行栈为stack1
         ctx[1].uc_stack.ss_size = sizeof(stack1);	//指定该协程栈的大小
-        ctx[1].uc_link = &ctx[0];			//指定该上下文结构体执行结束后要运行的下一个上下文结构体
-        makecontext(&ctx[1], func1, 0);			//指定ctx[1]上下文结构体新的上下文环境为func1函数
+        ctx[1].uc_link = &ctx[0];			        //指定该上下文结构体执行结束后要运行的下一个上下文结构体
+        makecontext(&ctx[1], func1, 0);			    //指定ctx[1]上下文结构体新的上下文环境为func1函数
 
         // 初始化context2，绑定函数func2和堆栈stack2
         char stack2[8192];

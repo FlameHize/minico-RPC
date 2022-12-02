@@ -117,34 +117,43 @@ Socket Socket::accept()
 	{
 		return ret;
 	}
+	// 将该socket加入epoll监听池并切出所属的协程
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
+	// 执行到此说明当前协程恢复运行 也就是加入epoll的fd存在激活的事件 那么就再连接一次
 	auto con(accept_raw());
 	if(con.isUseful())
 	{
 		return con;
 	}
+	// 加入： 失败的话 尝试重连
 	return accept();
 }
 
 ssize_t Socket::read(void* buf, size_t count)
 {
+	// 调用系统接口读入数据到buf中
 	auto ret = ::read(_sockfd, buf, count);
-	LOG_INFO("the read bytes len is %d",ret);
+	//LOG_INFO("the read bytes len is %d",ret);
 
 	if (ret >= 0)
 	{
+		// 一次读完 直接返回
 		return ret;
 	}
 	/** 接收缓存区没有数据，则会返回-1*/
 	if(ret == -1 && errno == EINTR)
 	{
+		// 出错 重读
 		LOG_INFO("read has error");
 		return read(buf, count);
 	}
+	// 还没有数据可读 将socket加入epoll监听池并切出所属的协程，等有数据两再回来读
 	//LOG_INFO("the coroutine yield");
 	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
 	//LOG_INFO("the coroutine wake");
-	return ::read(_sockfd, buf, count);
+	// Modify: 当前协程恢复运行 那么就继续读
+	//return ::read(_sockfd, buf, count);
+	return read(buf,count);
 }
 
 void Socket::connect(const char* ip, int port)

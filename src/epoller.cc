@@ -86,6 +86,7 @@ int Epoller::getActEvServ(int timeOutMs, std::vector<Coroutine*>& activeEvServs)
 	{
 		return -1;
 	}
+	// 设置每次都重新拷贝到队列头部 因此不会有影响
 	int actEvNum = ::epoll_wait(epollFd_, &*activeEpollEvents_.begin(), static_cast<int>(activeEpollEvents_.size()), timeOutMs);
 	int savedErrno = errno;
 	if (actEvNum > 0)
@@ -96,6 +97,7 @@ int Epoller::getActEvServ(int timeOutMs, std::vector<Coroutine*>& activeEvServs)
 		}
 		for (int i = 0; i < actEvNum; ++i)
 		{
+			// 使用data的指针获得对应的协程
 			Coroutine* pCo = static_cast<Coroutine*>(activeEpollEvents_[i].data.ptr);
 			activeEvServs.push_back(pCo);
 		}

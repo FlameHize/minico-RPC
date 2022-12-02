@@ -1,7 +1,7 @@
 #include "../../include/tcp/tcp_server.h"
 
 /** 默认的server自定义函数*/
-std::function<void(minico::Socket*)> default_connection(
+TcpServer::conn_callback default_connection(
     [](minico::Socket* co_socket)
     {
         LOG_INFO("add one client connection");

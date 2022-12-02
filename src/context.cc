@@ -28,7 +28,7 @@ void Context::makeContext(void (*func)(), Processor* pP, Context* pLink)
 	ctx_.uc_stack.ss_sp = pStack_;                          
 	ctx_.uc_stack.ss_size = parameter::coroutineStackSize;  
 	ctx_.uc_link = pLink->getUCtx();                        
-	makecontext(&ctx_, func, 1, pP);                        
+	::makecontext(&ctx_, func, 1, pP);                        
 }
 
 void Context::makeCurContext()

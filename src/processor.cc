@@ -12,6 +12,7 @@ __thread int threadIdx = -1;
 Processor::Processor(int tid)
 	: tid_(tid), status_(PRO_STOPPED), pLoop_(nullptr), runningNewQue_(0), pCurCoroutine_(nullptr), mainCtx_(0)
 {
+	// 初始化处理器主程序上下文
 	mainCtx_.makeCurContext();         
 }
 
@@ -41,7 +42,6 @@ void Processor::resume(Coroutine* pCo)
 	{
 		return;
 	}
-
 	if (coSet_.find(pCo) == coSet_.end())
 	{
 		return;
@@ -70,6 +70,7 @@ void Processor::goCo(Coroutine* pCo)
 		SpinlockGuard lock(newQueLock_);	
 		newCoroutines_[!runningNewQue_].push(pCo);	
 	}
+	// 每加入一个新协程就唤醒处理器，从而立即执行该协程搭载的任务
 	wakeUpEpoller();
 }
 
@@ -114,8 +115,11 @@ bool Processor::loop()
 				{
 					timerExpiredCo_.clear();
 				}
+				
+				// 获取活跃的事件，这里是loop中唯一会被阻塞的地方(epoll_wait)
 				epoller_.getActEvServ(parameter::epollTimeOutMs, actCoroutines_);
 
+				// 首先处理定时任务协程
 				timer_.getExpiredCoroutines(timerExpiredCo_);
 				size_t timerCoCnt = timerExpiredCo_.size();
 				for (size_t i = 0; i < timerCoCnt; ++i)
@@ -126,6 +130,7 @@ bool Processor::loop()
 				Coroutine* pNewCo = nullptr;
 				int runningQue = runningNewQue_;                    
 				
+				// 其次执行新加入的协程
 				while (!newCoroutines_[runningQue].empty())    	   
 				{
 					{
@@ -137,16 +142,19 @@ bool Processor::loop()
 				}
 
 				{
+					// 上锁并转换任务队列
 					SpinlockGuard lock(newQueLock_);
 					runningNewQue_ = !runningQue;              
 				}
 
+				// 然后执行被epoll唤醒的协程
 				size_t actCoCnt = actCoroutines_.size();
 				for (size_t i = 0; i < actCoCnt; ++i)
 				{
 					resume(actCoroutines_[i]);
 				}
 
+				// 最后销毁已经执行完毕的协程
 				for (auto deadCo : removedCo_)
 				{
 					coSet_.erase(deadCo);
@@ -159,6 +167,7 @@ bool Processor::loop()
 				removedCo_.clear();
 				
 			}
+			// 如果跳出循环 状态变更为处理器暂停
 			status_ = PRO_STOPPED;
 		}
     );

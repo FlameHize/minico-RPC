@@ -26,6 +26,7 @@ bool Timer::init(Epoller* pEpoller)
 	timeFd_ = ::timerfd_create(CLOCK_MONOTONIC, TFD_NONBLOCK | TFD_CLOEXEC);
 	if (isTimeFdUseful())
 	{
+		// 监听timerfd
 		return pEpoller->addEv(nullptr, timeFd_, EPOLLIN | EPOLLPRI | EPOLLRDHUP);	
 	}
 	return false;
@@ -47,6 +48,7 @@ void Timer::getExpiredCoroutines(std::vector<Coroutine*>& expiredCoroutines)
 			cnt = ::read(timeFd_, dummyBuf_, TIMER_DUMMYBUF_SIZE);	
 		}
 	}
+	// 需要重新设置定时的时间，到期唤醒timerfd
 	if (!timerCoHeap_.empty())
 	{
 		Time time = timerCoHeap_.top().first;
@@ -58,6 +60,7 @@ void Timer::runAt(Time time, Coroutine* pCo)
 	timerCoHeap_.push(std::move(std::pair<Time, Coroutine*>(time, pCo)));
 	if (timerCoHeap_.top().first == time)
 	{
+		// 如果新加入的任务是最紧急的任务 就需要立即更改timerfd到期的时间
 		resetTimeOfTimefd(time);
 	}
 }

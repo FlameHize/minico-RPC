@@ -51,7 +51,7 @@ public:
     }
     
 private:
-    /** 服务器的loop工作函数*/
+    /** 服务器单核loop工作函数*/
     void server_loop();
     
     /** 服务器多核loop函数*/
