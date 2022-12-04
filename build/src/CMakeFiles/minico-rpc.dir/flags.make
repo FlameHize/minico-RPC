@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -Dminico_rpc_EXPORTS
 
-CXX_INCLUDES = -I/home/zgx/Desktop/Repository/include -I/home/zgx/Desktop/Repository/include/tcp -I/home/zgx/Desktop/Repository/include/rpc
+CXX_INCLUDES = -I/home/zgx/Desktop/Repository/include -I/home/zgx/Desktop/Repository/include/tcp -I/home/zgx/Desktop/Repository/include/udp -I/home/zgx/Desktop/Repository/include/rpc
 
 CXX_FLAGS = -std=c++11 -Wall -std=c++11 -O3 -fopenmp -pthread -g -ggdb -fPIC
 

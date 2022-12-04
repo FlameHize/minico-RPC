@@ -7,5 +7,7 @@
 /home/zgx/Desktop/Repository/build/example/CMakeFiles/rpc_server_test.dir
 /home/zgx/Desktop/Repository/build/example/CMakeFiles/tcp_client_test.dir
 /home/zgx/Desktop/Repository/build/example/CMakeFiles/tcp_server_test.dir
+/home/zgx/Desktop/Repository/build/example/CMakeFiles/udp_client_test.dir
+/home/zgx/Desktop/Repository/build/example/CMakeFiles/udp_server_test.dir
 /home/zgx/Desktop/Repository/build/example/CMakeFiles/edit_cache.dir
 /home/zgx/Desktop/Repository/build/example/CMakeFiles/rebuild_cache.dir

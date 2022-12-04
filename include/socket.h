@@ -28,10 +28,23 @@ namespace minico
 			}
 		}
 
-		Socket()
-			: _sockfd(::socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, IPPROTO_TCP)),
-			_pRef(new int(1)), _port(-1), _ip("")
-		{ }
+		Socket(std::string type = "TCP")
+			: _pRef(new int(1)), _port(-1), _ip("")
+		{ 
+			if(type == "UDP" || type == "udp")
+			{
+				_sockfd = ::socket(AF_INET,SOCK_DGRAM | SOCK_NONBLOCK | SOCK_CLOEXEC, IPPROTO_UDP);
+			}
+			else if(type == "TCP" || type == "tcp")
+			{
+				_sockfd = ::socket(AF_INET,SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC,IPPROTO_TCP);
+			}
+			else
+			{
+				LOG_INFO("Socket type set error,default set the Socket type to TCP");
+				_sockfd = ::socket(AF_INET,SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC,IPPROTO_TCP);
+			}
+		}
 
 		Socket(const Socket& otherSock) : _sockfd(otherSock._sockfd)
 		{
@@ -107,7 +120,12 @@ namespace minico
 		/** 设置套接字为阻塞*/
 		int setBlockSocket();
 
-
+		// TODO: HOOK UDP
+		ssize_t recvfrom(int sockfd, void* buf, int len, unsigned int flags,
+						sockaddr* from, socklen_t* fromlen);
+						
+		ssize_t sendto(int sockfd, const void* buf, int len, unsigned int flags,
+						const struct sockaddr* to, int tolen);
 	private:
 
 		/** 接收一个连接，并返回一个新的Socket连接的具体实现*/

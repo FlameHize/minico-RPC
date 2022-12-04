@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zgx/Desktop/Repository/example/test_server.cc" "example/CMakeFiles/server_test.dir/test_server.cc.o" "gcc" "example/CMakeFiles/server_test.dir/test_server.cc.o.d"
+  "/home/zgx/Desktop/Repository/example/udp_server_test.cc" "example/CMakeFiles/udp_server_test.dir/udp_server_test.cc.o" "gcc" "example/CMakeFiles/udp_server_test.dir/udp_server_test.cc.o.d"
   )
 
 # Targets to which this target links.

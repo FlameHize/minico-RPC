@@ -586,6 +586,54 @@ timer.cc.s:
 	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/timer.cc.s
 .PHONY : timer.cc.s
 
+udp/udp_client.o: udp/udp_client.cc.o
+.PHONY : udp/udp_client.o
+
+# target to build an object file
+udp/udp_client.cc.o:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o
+.PHONY : udp/udp_client.cc.o
+
+udp/udp_client.i: udp/udp_client.cc.i
+.PHONY : udp/udp_client.i
+
+# target to preprocess a source file
+udp/udp_client.cc.i:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.i
+.PHONY : udp/udp_client.cc.i
+
+udp/udp_client.s: udp/udp_client.cc.s
+.PHONY : udp/udp_client.s
+
+# target to generate assembly for a file
+udp/udp_client.cc.s:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.s
+.PHONY : udp/udp_client.cc.s
+
+udp/udp_server.o: udp/udp_server.cc.o
+.PHONY : udp/udp_server.o
+
+# target to build an object file
+udp/udp_server.cc.o:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o
+.PHONY : udp/udp_server.cc.o
+
+udp/udp_server.i: udp/udp_server.cc.i
+.PHONY : udp/udp_server.i
+
+# target to preprocess a source file
+udp/udp_server.cc.i:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.i
+.PHONY : udp/udp_server.cc.i
+
+udp/udp_server.s: udp/udp_server.cc.s
+.PHONY : udp/udp_server.s
+
+# target to generate assembly for a file
+udp/udp_server.cc.s:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/minico-rpc.dir/build.make src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.s
+.PHONY : udp/udp_server.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -652,6 +700,12 @@ help:
 	@echo "... timer.o"
 	@echo "... timer.i"
 	@echo "... timer.s"
+	@echo "... udp/udp_client.o"
+	@echo "... udp/udp_client.i"
+	@echo "... udp/udp_client.s"
+	@echo "... udp/udp_server.o"
+	@echo "... udp/udp_server.i"
+	@echo "... udp/udp_server.s"
 .PHONY : help
 
 

@@ -11,6 +11,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/include/tcp)
+include_directories(${PROJECT_SOURCE_DIR}/include/udp)
 include_directories(${PROJECT_SOURCE_DIR}/include/rpc)
 
 add_subdirectory(src)

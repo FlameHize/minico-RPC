@@ -27,6 +27,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/zgx/Desktop/Repository/src/tcp/tcp_client.cc" "src/CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o" "gcc" "src/CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o.d"
   "/home/zgx/Desktop/Repository/src/tcp/tcp_server.cc" "src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o" "gcc" "src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o.d"
   "/home/zgx/Desktop/Repository/src/timer.cc" "src/CMakeFiles/minico-rpc.dir/timer.cc.o" "gcc" "src/CMakeFiles/minico-rpc.dir/timer.cc.o.d"
+  "/home/zgx/Desktop/Repository/src/udp/udp_client.cc" "src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o" "gcc" "src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o.d"
+  "/home/zgx/Desktop/Repository/src/udp/udp_server.cc" "src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o" "gcc" "src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o.d"
   )
 
 # Targets to which this target links.

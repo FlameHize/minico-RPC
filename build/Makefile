@@ -181,6 +181,32 @@ tcp_server_test/fast:
 	$(MAKE) $(MAKESILENT) -f example/CMakeFiles/tcp_server_test.dir/build.make example/CMakeFiles/tcp_server_test.dir/build
 .PHONY : tcp_server_test/fast
 
+#=============================================================================
+# Target rules for targets named udp_client_test
+
+# Build rule for target.
+udp_client_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 udp_client_test
+.PHONY : udp_client_test
+
+# fast build rule for target.
+udp_client_test/fast:
+	$(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_client_test.dir/build.make example/CMakeFiles/udp_client_test.dir/build
+.PHONY : udp_client_test/fast
+
+#=============================================================================
+# Target rules for targets named udp_server_test
+
+# Build rule for target.
+udp_server_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 udp_server_test
+.PHONY : udp_server_test
+
+# fast build rule for target.
+udp_server_test/fast:
+	$(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_server_test.dir/build.make example/CMakeFiles/udp_server_test.dir/build
+.PHONY : udp_server_test/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -194,6 +220,8 @@ help:
 	@echo "... rpc_server_test"
 	@echo "... tcp_client_test"
 	@echo "... tcp_server_test"
+	@echo "... udp_client_test"
+	@echo "... udp_server_test"
 .PHONY : help
 
 

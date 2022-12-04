@@ -240,3 +240,51 @@ int Socket::setBlockSocket()
 	int ret = fcntl(_sockfd, F_SETFL, flags & ~O_NONBLOCK);   
 	return ret;
 }
+
+ssize_t Socket::recvfrom(int sockfd, void* buf, int len, unsigned int flags,
+						sockaddr* from, socklen_t* fromlen)
+{
+	if(sockfd != _sockfd)
+	{
+		LOG_INFO("ERROR: the sockfd is not same as current Socket");
+		return -1;
+	}
+	// 调用系统接口读入数据到buf中
+	auto ret = ::recvfrom(sockfd, buf, len, flags, from, fromlen);
+	//LOG_INFO("the read bytes len is %d",ret);
+
+	if (ret >= 0)
+	{
+		// 一次读完 直接返回
+		return ret;
+	}
+	/** 接收缓存区没有数据，则会返回-1*/
+	if(ret == -1 && errno == EINTR)
+	{
+		// 出错 重读
+		LOG_INFO("recvfrom has error");
+		return recvfrom(sockfd, buf, len, flags, from, fromlen);
+	}
+	// 还没有数据可读 将socket加入epoll监听池并切出所属的协程，等有数据两再回来读
+
+	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
+
+	// Modify: 当前协程恢复运行 那么就继续读
+	return recvfrom(sockfd, buf, len, flags, from, fromlen);
+}
+
+ssize_t Socket::sendto(int sockfd, const void* buf, int len, unsigned int flags,
+						const struct sockaddr* to, int tolen)
+{
+	if(sockfd != _sockfd)
+	{
+		LOG_INFO("ERROR: the sockfd is not same as current Socket");
+		return -1;
+	}
+	size_t sendIdx = ::sendto(sockfd, buf, len, flags, to, tolen);
+	if (sendIdx >= len){
+		return len;
+	}
+	minico::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(sockfd, EPOLLOUT);
+	return sendto(sockfd, (char*)buf + sendIdx, len - sendIdx, flags, to, tolen);
+}

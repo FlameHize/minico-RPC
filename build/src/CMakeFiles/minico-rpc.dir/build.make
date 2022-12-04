@@ -265,10 +265,38 @@ src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.s"
 	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zgx/Desktop/Repository/src/tcp/tcp_server.cc -o CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.s
 
+src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
+src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o: ../src/udp/udp_client.cc
+src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o: src/CMakeFiles/minico-rpc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o"
+	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o -MF CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o.d -o CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o -c /home/zgx/Desktop/Repository/src/udp/udp_client.cc
+
+src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/minico-rpc.dir/udp/udp_client.cc.i"
+	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zgx/Desktop/Repository/src/udp/udp_client.cc > CMakeFiles/minico-rpc.dir/udp/udp_client.cc.i
+
+src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/minico-rpc.dir/udp/udp_client.cc.s"
+	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zgx/Desktop/Repository/src/udp/udp_client.cc -o CMakeFiles/minico-rpc.dir/udp/udp_client.cc.s
+
+src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
+src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o: ../src/udp/udp_server.cc
+src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o: src/CMakeFiles/minico-rpc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o"
+	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o -MF CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o.d -o CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o -c /home/zgx/Desktop/Repository/src/udp/udp_server.cc
+
+src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/minico-rpc.dir/udp/udp_server.cc.i"
+	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zgx/Desktop/Repository/src/udp/udp_server.cc > CMakeFiles/minico-rpc.dir/udp/udp_server.cc.i
+
+src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/minico-rpc.dir/udp/udp_server.cc.s"
+	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zgx/Desktop/Repository/src/udp/udp_server.cc -o CMakeFiles/minico-rpc.dir/udp/udp_server.cc.s
+
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: ../src/rpc/rpc_client.cc
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o: src/CMakeFiles/minico-rpc.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o"
 	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o -MF CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o.d -o CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o -c /home/zgx/Desktop/Repository/src/rpc/rpc_client.cc
 
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.i: cmake_force
@@ -282,7 +310,7 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.s: cmake_force
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: ../src/rpc/rpc_client_stub.cc
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o: src/CMakeFiles/minico-rpc.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o"
 	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o -MF CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o.d -o CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o -c /home/zgx/Desktop/Repository/src/rpc/rpc_client_stub.cc
 
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.i: cmake_force
@@ -296,7 +324,7 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.s: cmake_force
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: ../src/rpc/rpc_server.cc
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o: src/CMakeFiles/minico-rpc.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o"
 	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o -MF CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o.d -o CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o -c /home/zgx/Desktop/Repository/src/rpc/rpc_server.cc
 
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.i: cmake_force
@@ -310,7 +338,7 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.s: cmake_force
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: ../src/rpc/rpc_server_stub.cc
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o: src/CMakeFiles/minico-rpc.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o"
 	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o -MF CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o.d -o CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.o -c /home/zgx/Desktop/Repository/src/rpc/rpc_server_stub.cc
 
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.i: cmake_force
@@ -324,7 +352,7 @@ src/CMakeFiles/minico-rpc.dir/rpc/rpc_server_stub.cc.s: cmake_force
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o: src/CMakeFiles/minico-rpc.dir/flags.make
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o: ../src/rpc/rpc_header.cc
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o: src/CMakeFiles/minico-rpc.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o"
 	cd /home/zgx/Desktop/Repository/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o -MF CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o.d -o CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o -c /home/zgx/Desktop/Repository/src/rpc/rpc_header.cc
 
 src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.i: cmake_force
@@ -351,6 +379,8 @@ minico__rpc_OBJECTS = \
 "CMakeFiles/minico-rpc.dir/minico_api.cc.o" \
 "CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o" \
 "CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o" \
+"CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o" \
+"CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o" \
 "CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o" \
 "CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o" \
 "CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o" \
@@ -374,6 +404,8 @@ minico__rpc_EXTERNAL_OBJECTS =
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/minico_api.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/tcp/tcp_client.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o
+../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o
+../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_client.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_client_stub.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_server.cc.o
@@ -381,7 +413,7 @@ minico__rpc_EXTERNAL_OBJECTS =
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/rpc/rpc_header.cc.o
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/build.make
 ../lib/libminico-rpc.so: src/CMakeFiles/minico-rpc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX shared library ../../lib/libminico-rpc.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zgx/Desktop/Repository/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX shared library ../../lib/libminico-rpc.so"
 	cd /home/zgx/Desktop/Repository/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minico-rpc.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

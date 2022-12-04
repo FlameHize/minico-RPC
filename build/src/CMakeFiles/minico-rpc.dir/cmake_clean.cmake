@@ -39,6 +39,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/minico-rpc.dir/tcp/tcp_server.cc.o.d"
   "CMakeFiles/minico-rpc.dir/timer.cc.o"
   "CMakeFiles/minico-rpc.dir/timer.cc.o.d"
+  "CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o"
+  "CMakeFiles/minico-rpc.dir/udp/udp_client.cc.o.d"
+  "CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o"
+  "CMakeFiles/minico-rpc.dir/udp/udp_server.cc.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

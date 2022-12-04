@@ -52,4 +52,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "example/CMakeFiles/rpc_server_test.dir/DependInfo.cmake"
   "example/CMakeFiles/tcp_client_test.dir/DependInfo.cmake"
   "example/CMakeFiles/tcp_server_test.dir/DependInfo.cmake"
+  "example/CMakeFiles/udp_client_test.dir/DependInfo.cmake"
+  "example/CMakeFiles/udp_server_test.dir/DependInfo.cmake"
   )

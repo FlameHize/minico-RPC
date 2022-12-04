@@ -172,6 +172,34 @@ tcp_server_test/fast:
 	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/tcp_server_test.dir/build.make example/CMakeFiles/tcp_server_test.dir/build
 .PHONY : tcp_server_test/fast
 
+# Convenience name for target.
+example/CMakeFiles/udp_client_test.dir/rule:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/CMakeFiles/udp_client_test.dir/rule
+.PHONY : example/CMakeFiles/udp_client_test.dir/rule
+
+# Convenience name for target.
+udp_client_test: example/CMakeFiles/udp_client_test.dir/rule
+.PHONY : udp_client_test
+
+# fast build rule for target.
+udp_client_test/fast:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_client_test.dir/build.make example/CMakeFiles/udp_client_test.dir/build
+.PHONY : udp_client_test/fast
+
+# Convenience name for target.
+example/CMakeFiles/udp_server_test.dir/rule:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/CMakeFiles/udp_server_test.dir/rule
+.PHONY : example/CMakeFiles/udp_server_test.dir/rule
+
+# Convenience name for target.
+udp_server_test: example/CMakeFiles/udp_server_test.dir/rule
+.PHONY : udp_server_test
+
+# fast build rule for target.
+udp_server_test/fast:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_server_test.dir/build.make example/CMakeFiles/udp_server_test.dir/build
+.PHONY : udp_server_test/fast
+
 rpc_client_test.o: rpc_client_test.cc.o
 .PHONY : rpc_client_test.o
 
@@ -268,6 +296,54 @@ tcp_server_test.cc.s:
 	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/tcp_server_test.dir/build.make example/CMakeFiles/tcp_server_test.dir/tcp_server_test.cc.s
 .PHONY : tcp_server_test.cc.s
 
+udp_client_test.o: udp_client_test.cc.o
+.PHONY : udp_client_test.o
+
+# target to build an object file
+udp_client_test.cc.o:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_client_test.dir/build.make example/CMakeFiles/udp_client_test.dir/udp_client_test.cc.o
+.PHONY : udp_client_test.cc.o
+
+udp_client_test.i: udp_client_test.cc.i
+.PHONY : udp_client_test.i
+
+# target to preprocess a source file
+udp_client_test.cc.i:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_client_test.dir/build.make example/CMakeFiles/udp_client_test.dir/udp_client_test.cc.i
+.PHONY : udp_client_test.cc.i
+
+udp_client_test.s: udp_client_test.cc.s
+.PHONY : udp_client_test.s
+
+# target to generate assembly for a file
+udp_client_test.cc.s:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_client_test.dir/build.make example/CMakeFiles/udp_client_test.dir/udp_client_test.cc.s
+.PHONY : udp_client_test.cc.s
+
+udp_server_test.o: udp_server_test.cc.o
+.PHONY : udp_server_test.o
+
+# target to build an object file
+udp_server_test.cc.o:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_server_test.dir/build.make example/CMakeFiles/udp_server_test.dir/udp_server_test.cc.o
+.PHONY : udp_server_test.cc.o
+
+udp_server_test.i: udp_server_test.cc.i
+.PHONY : udp_server_test.i
+
+# target to preprocess a source file
+udp_server_test.cc.i:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_server_test.dir/build.make example/CMakeFiles/udp_server_test.dir/udp_server_test.cc.i
+.PHONY : udp_server_test.cc.i
+
+udp_server_test.s: udp_server_test.cc.s
+.PHONY : udp_server_test.s
+
+# target to generate assembly for a file
+udp_server_test.cc.s:
+	cd /home/zgx/Desktop/Repository/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/udp_server_test.dir/build.make example/CMakeFiles/udp_server_test.dir/udp_server_test.cc.s
+.PHONY : udp_server_test.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -280,6 +356,8 @@ help:
 	@echo "... rpc_server_test"
 	@echo "... tcp_client_test"
 	@echo "... tcp_server_test"
+	@echo "... udp_client_test"
+	@echo "... udp_server_test"
 	@echo "... rpc_client_test.o"
 	@echo "... rpc_client_test.i"
 	@echo "... rpc_client_test.s"
@@ -292,6 +370,12 @@ help:
 	@echo "... tcp_server_test.o"
 	@echo "... tcp_server_test.i"
 	@echo "... tcp_server_test.s"
+	@echo "... udp_client_test.o"
+	@echo "... udp_client_test.i"
+	@echo "... udp_client_test.s"
+	@echo "... udp_server_test.o"
+	@echo "... udp_server_test.i"
+	@echo "... udp_server_test.s"
 .PHONY : help
 
 
